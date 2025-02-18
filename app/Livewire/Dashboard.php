@@ -67,7 +67,11 @@ class Dashboard extends Component implements HasForms, HasTable
                 \Filament\Tables\Columns\TextColumn::make('yearsem')
                     ->label('Year & Semester')
                     ->default(fn($record): string => $record->semester)
-                    ->description(fn($record): string => $record->year)
+                    ->description(fn($record): string => $record->year),
+                \Filament\Tables\Columns\TextColumn::make('created_at')
+                    ->date('Y-m-d'),
+                \Filament\Tables\Columns\TextColumn::make('updated_at')
+                    ->since(),
             ])
             ->filters([
                 \Filament\Tables\Filters\SelectFilter::make('course_id')
@@ -131,7 +135,9 @@ class Dashboard extends Component implements HasForms, HasTable
             ->actions([
                 \Filament\Tables\Actions\Action::make('copus1')
                     ->label('Copus 1')
-                    ->button(),
+                    ->button()
+                    ->form(\App\Services\CopusSheet::schema())
+                    ->modalWidth('full'),
                 \Filament\Tables\Actions\Action::make('copus2')
                     ->label('Copus 2')
                     ->button(),
