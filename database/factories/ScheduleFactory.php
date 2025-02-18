@@ -17,10 +17,15 @@ class ScheduleFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => fake()->sentence(3),
-            'time' => fake()->time(),
-            'semester' => fake()->randomElement(['1st Semester','2nd Semester']),
-            'is_active' => fake()->boolean(),
+            'course_id' => \App\Models\Course::factory(),
+            'professor_id' => \App\Models\User::factory(),
+            'subject_id' => \App\Models\Subject::factory(),
+            'room_id' => \App\Models\Room::factory(),
+            'name' => $this->faker->word,
+            'time' => $this->faker->time,
+            'semester' => $this->faker->randomElement(['1st Semester', '2nd Semester', 'Summer']),
+            'year' => $this->faker->year,
+            'is_active' => $this->faker->boolean,
         ];
     }
 }

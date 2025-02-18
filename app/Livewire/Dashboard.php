@@ -2,12 +2,16 @@
 
 namespace App\Livewire;
 
+use App\Models\Course;
+use App\Models\User;
+use App\Models\Schedule;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
 use Filament\Tables\Concerns\InteractsWithTable;
 use Filament\Tables\Contracts\HasTable;
 use Filament\Tables\Table;
 use Livewire\Component;
+use Illuminate\Database\Eloquent\Builder;
 
 class Dashboard extends Component implements HasForms, HasTable
 {
@@ -16,52 +20,127 @@ class Dashboard extends Component implements HasForms, HasTable
 
     public function table(Table $table): Table
     {
+        $filters = $this->getTableFilterState('table');
+
         return $table
             ->heading('Evaluation Form')
-            ->query(\App\Models\User::query())
+            ->query(
+                Schedule::query()
+                    ->when(
+                        $filters['course_id'] ?? null,
+                        fn(Builder $query, $courseId): Builder =>
+                        $query->whereHas(
+                            'course',
+                            fn($q) =>
+                            $q->where('id', $courseId)
+                        )
+                    )
+                    ->when(
+                        $filters['professor_id'] ?? null,
+                        fn(Builder $query, $professorId): Builder =>
+                        $query->whereHas(
+                            'professor',
+                            fn($q) =>
+                            $q->where('id', $professorId)
+                        )
+                    )
+                    ->when(
+                        $filters['semester'] ?? null,
+                        fn(Builder $query, $semester): Builder =>
+                        $query->where('semester', $semester)
+                    )
+                    ->when(
+                        $filters['year'] ?? null,
+                        fn(Builder $query, $year): Builder =>
+                        $query->where('year', $year)
+                    )
+            )
             ->columns([
-                \Filament\Tables\Columns\TextColumn::make('name')
-                    ->label('Subject'),
-                \Filament\Tables\Columns\TextColumn::make('email')
-                    ->label('Schedule'),
-                \Filament\Tables\Columns\TextColumn::make('room')
-                    ->label('Room')
+                \Filament\Tables\Columns\TextColumn::make('courseprof')
+                    ->label('Course and Professor')
+                    ->default(fn($record): string => $record->course?->name)
+                    ->description(fn($record): string => $record->professor?->name),
+                \Filament\Tables\Columns\TextColumn::make('roomsubject')
+                    ->label('Room & Subject')
+                    ->default(fn($record): string => $record->room?->name)
+                    ->description(fn($record): string => $record->subject?->name),
+                \Filament\Tables\Columns\TextColumn::make('yearsem')
+                    ->label('Year & Semester')
+                    ->default(fn($record): string => $record->semester)
+                    ->description(fn($record): string => $record->year)
             ])
             ->filters([
-                \Filament\Tables\Filters\SelectFilter::make('Course')
-                    ->options(\App\Models\Course::where('is_active', true)->pluck('name','id'))
+                \Filament\Tables\Filters\SelectFilter::make('course_id')
+                    ->label('Course')
+                    ->relationship('course', 'name')
+                    ->preload()
                     ->native(false)
                     ->columnSpanFull(),
-                \Filament\Tables\Filters\SelectFilter::make('Professor')
-                    ->options(\App\Models\User::all()->pluck('name','id'))
+
+                \Filament\Tables\Filters\SelectFilter::make('professor_id')
+                    ->label('Professor')
+                    ->options(function () use ($filters) {
+                        if (!isset($filters['course_id'])) {
+                            return User::role('professor')
+                                ->pluck('name', 'id')
+                                ->toArray();
+                        }
+
+                        return User::role('professor')
+                            ->whereHas('schedules', function ($query) use ($filters) {
+                                $query->where('course_id', $filters['course_id']);
+                            })
+                            ->pluck('name', 'id')
+                            ->toArray();
+                    })
                     ->native(false),
-                \Filament\Tables\Filters\SelectFilter::make('Semester')
+
+                \Filament\Tables\Filters\SelectFilter::make('semester')
                     ->options([
-                        '1st' => '1st Semester',
-                        '2nd' => '2nd Semester',
+                        '1st Semester' => '1st Semester',
+                        '2nd Semester' => '2nd Semester',
+                        'Summer' => 'Summer'
                     ])
+                    ->optionsLimit(3)
+                    ->searchable(false)
                     ->native(false),
-                \Filament\Tables\Filters\SelectFilter::make('Year')
-                    ->options([
-                        '2015-2016' => '2015 - 2016',
-                        '2016-2017' => '2016 - 2017',
-                        '2017-2018' => '2017 - 2018',
-                    ])
+
+                \Filament\Tables\Filters\SelectFilter::make('year')
+                    ->options(function () use ($filters) {
+                        $query = Schedule::query();
+
+                        if (isset($filters['course_id'])) {
+                            $query->where('course_id', $filters['course_id']);
+                        }
+
+                        if (isset($filters['professor_id'])) {
+                            $query->where('professor_id', $filters['professor_id']);
+                        }
+
+                        if (isset($filters['semester'])) {
+                            $query->where('semester', $filters['semester']);
+                        }
+
+                        return $query->distinct()
+                            ->orderBy('year', 'desc')
+                            ->pluck('year', 'year')
+                            ->toArray();
+                    })
                     ->native(false),
             ], layout: \Filament\Tables\Enums\FiltersLayout::AboveContent)
             ->actions([
-                \Filament\Tables\Actions\Action::make('first')
+                \Filament\Tables\Actions\Action::make('copus1')
                     ->label('Copus 1')
                     ->button(),
-                \Filament\Tables\Actions\Action::make('first')
+                \Filament\Tables\Actions\Action::make('copus2')
                     ->label('Copus 2')
                     ->button(),
-                \Filament\Tables\Actions\Action::make('first')
+                \Filament\Tables\Actions\Action::make('copus3')
                     ->label('Copus 3')
                     ->button(),
             ])
             ->filtersFormColumns(3)
-            ->emptyStateHeading('No Tickets yet')
+            ->emptyStateHeading('No Schedules found')
             ->defaultPaginationPageOption(10)
             ->paginationPageOptions([5, 10, 25, 50])
             ->striped();
