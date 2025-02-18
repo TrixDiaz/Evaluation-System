@@ -137,13 +137,34 @@ class Dashboard extends Component implements HasForms, HasTable
                     ->label('Copus 1')
                     ->button()
                     ->form(\App\Services\CopusSheet::schema())
-                    ->modalWidth('full'),
+                    ->modalWidth('full')
+                    ->action(function (array $data, Schedule $record) {
+                        // Save COPUS 1 data
+                        $record->copus1_data = $data;
+                        $record->save();
+                    }),
+
                 \Filament\Tables\Actions\Action::make('copus2')
                     ->label('Copus 2')
-                    ->button(),
+                    ->button()
+                    ->form(\App\Services\CopusSheet::schema())
+                    ->modalWidth('full')
+                    ->action(function (array $data, Schedule $record) {
+                        // Save COPUS 2 data
+                        $record->copus2_data = $data;
+                        $record->save();
+                    }),
+
                 \Filament\Tables\Actions\Action::make('copus3')
                     ->label('Copus 3')
-                    ->button(),
+                    ->button()
+                    ->form(\App\Services\CopusSheet::schema())
+                    ->modalWidth('full')
+                    ->action(function (array $data, Schedule $record) {
+                        // Save COPUS 3 data
+                        $record->copus3_data = $data;
+                        $record->save();
+                    }),
             ])
             ->filtersFormColumns(3)
             ->emptyStateHeading('No Schedules found')
