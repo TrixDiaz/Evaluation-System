@@ -13,6 +13,7 @@ use Filament\Tables\Table;
 use Livewire\Component;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Log;
+use Filament\Notifications\Notification;
 
 class Dashboard extends Component implements HasForms, HasTable
 {
@@ -140,23 +141,98 @@ class Dashboard extends Component implements HasForms, HasTable
                     ->form(\App\Services\CopusSheet::schema())
                     ->modalWidth('full')
                     ->action(function (array $data, Schedule $record) {
-                        // Add debug logging
-                        Log::info('Form Data Structure:', $data);
+                        try {
+                            // Debug the raw form data
+                            \Log::info('Raw Form Data:', $data);
 
-                        $formData = $data['data'] ?? [];
+                            $formData = $data['data'] ?? [];
 
-                        $record->copusObservations()->updateOrCreate(
-                            ['observation_number' => 1],
-                            [
-                                'observer_name' => $formData['observer_name'] ?? '',
-                                'observation_date' => $formData['observation_date'] ?? now(),
-                                'course_name' => $formData['course_name'] ?? '',
-                                'student_activities' => $formData['student_activities'] ?? [],
-                                'instructor_activities' => $formData['instructor_activities'] ?? [],
-                                'comments' => $formData['comments'] ?? [],
-                                'additional_comments' => $formData['additional_comments'] ?? '',
-                            ]
-                        );
+                            // Get course name from the schedule if not provided
+                            $courseName = $formData['course_name'] ?? $record->course?->name ?? '';
+
+                            // Process student activities
+                            $studentActivities = [];
+                            if (isset($data['data']['student_activities'])) {
+                                foreach ($data['data']['student_activities'] as $time => $activities) {
+                                    $studentActivities[$time] = [];
+                                    foreach ($activities as $code => $value) {
+                                        if ($value === "1") {
+                                            $studentActivities[$time][] = $code;
+                                        }
+                                    }
+                                }
+                            }
+
+                            // Process instructor activities
+                            $instructorActivities = [];
+                            if (isset($data['data']['instructor_activities'])) {
+                                foreach ($data['data']['instructor_activities'] as $time => $activities) {
+                                    $instructorActivities[$time] = [];
+                                    foreach ($activities as $code => $value) {
+                                        if ($value === "1") {
+                                            $instructorActivities[$time][] = $code;
+                                        }
+                                    }
+                                }
+                            }
+
+                            // Process comments
+                            $comments = [];
+                            if (isset($data['data']['comments'])) {
+                                foreach ($data['data']['comments'] as $time => $comment) {
+                                    if (!empty($comment)) {
+                                        $comments[$time] = $comment;
+                                    }
+                                }
+                            }
+
+                            // Debug the processed arrays
+                            \Log::info('Processed Arrays:', [
+                                'course_name' => $courseName,
+                                'student_activities' => $studentActivities,
+                                'instructor_activities' => $instructorActivities,
+                                'comments' => $comments
+                            ]);
+
+                            $observation = $record->copusObservations()->updateOrCreate(
+                                ['observation_number' => 1],
+                                [
+                                    'observer_name' => $formData['observer_name'] ?? auth()->user()->name,
+                                    'observation_date' => $formData['observation_date'] ?? now(),
+                                    'course_name' => $courseName,
+                                    'student_activities' => $studentActivities ?: [],
+                                    'instructor_activities' => $instructorActivities ?: [],
+                                    'comments' => $comments ?: [],
+                                    'additional_comments' => $formData['additional_comments'] ?? '',
+                                ]
+                            );
+
+                            // Debug the saved observation
+                            \Log::info('Saved Observation:', $observation->toArray());
+
+                            // Success notification
+                            Notification::make()
+                                ->success()
+                                ->title('COPUS Observation Saved')
+                                ->body('The observation data has been successfully saved.')
+                                ->send();
+                        } catch (\Exception $e) {
+                            // Error logging
+                            \Log::error('COPUS Save Error:', [
+                                'error' => $e->getMessage(),
+                                'trace' => $e->getTraceAsString(),
+                                'data' => $data
+                            ]);
+
+                            // Error notification
+                            Notification::make()
+                                ->danger()
+                                ->title('Error Saving COPUS Observation')
+                                ->body('There was a problem saving the observation data. Please try again.')
+                                ->send();
+
+                            throw $e;
+                        }
                     }),
 
                 \Filament\Tables\Actions\Action::make('copus2')

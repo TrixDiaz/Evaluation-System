@@ -41,6 +41,8 @@ final class CopusSheet
                         Forms\Components\TextInput::make('data.course_name')
                             ->required()
                             ->label('Course Name')
+                            ->default(fn($livewire) => $livewire->record->course?->name ?? '')
+                            ->disabled()
                             ->columnSpan(2),
                     ])->columns(2),
                 ]),
