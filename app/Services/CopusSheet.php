@@ -22,23 +22,25 @@ final class CopusSheet
         self::generateTimeSegments();
 
         return [
-            Grid::make([
-                Forms\Components\TextInput::make('observer_name')
-                    ->required()
-                    ->label('Observer Name')
-                    ->columnSpan(1),
+            Section::make('Observer Information')
+                ->schema([
+                    Grid::make([
+                        Forms\Components\TextInput::make('data.observer_name')
+                            ->required()
+                            ->label('Observer Name')
+                            ->columnSpan(1),
 
-                Forms\Components\DatePicker::make('observation_date')
-                    ->required()
-                    ->label('Observation Date')
-                    ->columnSpan(1),
+                        Forms\Components\DatePicker::make('data.observation_date')
+                            ->required()
+                            ->label('Observation Date')
+                            ->columnSpan(1),
 
-                Forms\Components\TextInput::make('course_name')
-                    ->required()
-                    ->label('Course Name')
-                    ->columnSpan(2),
-            ])
-                ->columns(2),
+                        Forms\Components\TextInput::make('data.course_name')
+                            ->required()
+                            ->label('Course Name')
+                            ->columnSpan(2),
+                    ])->columns(2),
+                ]),
 
             Forms\Components\View::make('copus.observation-grid')
                 ->viewData([
@@ -46,10 +48,9 @@ final class CopusSheet
                     'studentActivities' => self::getStudentActivities(),
                     'instructorActivities' => self::getInstructorActivities(),
                 ])
-                // This ensures Alpine.js is available for the modals
                 ->extraAttributes(['x-data' => '{}']),
 
-            Forms\Components\Textarea::make('additional_comments')
+            Forms\Components\Textarea::make('data.additional_comments')
                 ->label('Additional Comments')
                 ->placeholder('Enter any other general observations or notes about the session')
                 ->rows(3)

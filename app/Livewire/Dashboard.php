@@ -12,6 +12,7 @@ use Filament\Tables\Contracts\HasTable;
 use Filament\Tables\Table;
 use Livewire\Component;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Support\Facades\Log;
 
 class Dashboard extends Component implements HasForms, HasTable
 {
@@ -139,9 +140,23 @@ class Dashboard extends Component implements HasForms, HasTable
                     ->form(\App\Services\CopusSheet::schema())
                     ->modalWidth('full')
                     ->action(function (array $data, Schedule $record) {
-                        // Save COPUS 1 data
-                        $record->copus1_data = $data;
-                        $record->save();
+                        // Add debug logging
+                        Log::info('Form Data Structure:', $data);
+
+                        $formData = $data['data'] ?? [];
+
+                        $record->copusObservations()->updateOrCreate(
+                            ['observation_number' => 1],
+                            [
+                                'observer_name' => $formData['observer_name'] ?? '',
+                                'observation_date' => $formData['observation_date'] ?? now(),
+                                'course_name' => $formData['course_name'] ?? '',
+                                'student_activities' => $formData['student_activities'] ?? [],
+                                'instructor_activities' => $formData['instructor_activities'] ?? [],
+                                'comments' => $formData['comments'] ?? [],
+                                'additional_comments' => $formData['additional_comments'] ?? '',
+                            ]
+                        );
                     }),
 
                 \Filament\Tables\Actions\Action::make('copus2')
@@ -150,9 +165,22 @@ class Dashboard extends Component implements HasForms, HasTable
                     ->form(\App\Services\CopusSheet::schema())
                     ->modalWidth('full')
                     ->action(function (array $data, Schedule $record) {
-                        // Save COPUS 2 data
-                        $record->copus2_data = $data;
-                        $record->save();
+                        if (!isset($data['data'])) {
+                            throw new \Exception('Form data structure is invalid');
+                        }
+
+                        $record->copusObservations()->updateOrCreate(
+                            ['observation_number' => 2],
+                            [
+                                'observer_name' => $data['data']['observer_name'] ?? '',
+                                'observation_date' => $data['data']['observation_date'] ?? now(),
+                                'course_name' => $data['data']['course_name'] ?? '',
+                                'student_activities' => $data['data']['student_activities'] ?? [],
+                                'instructor_activities' => $data['data']['instructor_activities'] ?? [],
+                                'comments' => $data['data']['comments'] ?? [],
+                                'additional_comments' => $data['data']['additional_comments'] ?? '',
+                            ]
+                        );
                     }),
 
                 \Filament\Tables\Actions\Action::make('copus3')
@@ -161,9 +189,22 @@ class Dashboard extends Component implements HasForms, HasTable
                     ->form(\App\Services\CopusSheet::schema())
                     ->modalWidth('full')
                     ->action(function (array $data, Schedule $record) {
-                        // Save COPUS 3 data
-                        $record->copus3_data = $data;
-                        $record->save();
+                        if (!isset($data['data'])) {
+                            throw new \Exception('Form data structure is invalid');
+                        }
+
+                        $record->copusObservations()->updateOrCreate(
+                            ['observation_number' => 3],
+                            [
+                                'observer_name' => $data['data']['observer_name'] ?? '',
+                                'observation_date' => $data['data']['observation_date'] ?? now(),
+                                'course_name' => $data['data']['course_name'] ?? '',
+                                'student_activities' => $data['data']['student_activities'] ?? [],
+                                'instructor_activities' => $data['data']['instructor_activities'] ?? [],
+                                'comments' => $data['data']['comments'] ?? [],
+                                'additional_comments' => $data['data']['additional_comments'] ?? '',
+                            ]
+                        );
                     }),
             ])
             ->filtersFormColumns(3)

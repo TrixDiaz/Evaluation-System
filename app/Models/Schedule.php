@@ -39,4 +39,9 @@ class Schedule extends Model
     {
         return $this->belongsTo(Room::class);
     }
+
+    public function copusObservations()
+    {
+        return $this->hasMany(CopusObservation::class);
+    }
 }
