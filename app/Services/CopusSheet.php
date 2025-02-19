@@ -28,11 +28,14 @@ final class CopusSheet
                         Forms\Components\TextInput::make('data.observer_name')
                             ->required()
                             ->label('Observer Name')
+                            ->default(auth()->user()->name)
+                            ->disabled()
                             ->columnSpan(1),
 
                         Forms\Components\DatePicker::make('data.observation_date')
                             ->required()
                             ->label('Observation Date')
+                            ->default(now())
                             ->columnSpan(1),
 
                         Forms\Components\TextInput::make('data.course_name')
