@@ -77,9 +77,11 @@
                         @foreach (array_keys($studentActivities) as $code)
                             <td class="border-r border-b border-gray-200 dark:border-gray-700 p-2 text-center">
                                 <input type="checkbox"
-                                    name="data[student_activities][{{ $time }}][{{ $code }}]"
-                                    value="1"
-                                    class="rounded border-gray-300 dark:border-gray-600 text-primary-600 dark:text-primary-400 shadow-sm focus:border-primary-300 focus:ring focus:ring-primary-200 focus:ring-opacity-50 h-4 w-4 dark:bg-gray-700" />
+                                       name="data[student_activities][{{ $time }}][{{ $code }}]"
+                                       value="1"
+                                       x-model="formData.student_activities[{{ $time }}][{{ $code }}]"
+                                       class="rounded border-gray-300 dark:border-gray-600 text-primary-600 dark:text-primary-400 shadow-sm focus:border-primary-300 focus:ring focus:ring-primary-200 focus:ring-opacity-50 h-4 w-4 dark:bg-gray-700"
+                                />
                             </td>
                         @endforeach
 

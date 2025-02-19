@@ -10,26 +10,16 @@ final class CopusSheet
 {
     private static $timeSegments = [];
 
-    public static function generateTimeSegments()
+    public static function schema(string $observerName): array
     {
-        for ($i = 2; $i <= 58; $i += 2) {
-            self::$timeSegments[] = "{$i}-" . ($i + 2);
-        }
-    }
-
-    public static function schema(): array
-    {
-        self::generateTimeSegments();
-
         return [
-            Section::make('Observer Information')
+            Grid::make('')
                 ->schema([
                     Grid::make([
                         Forms\Components\TextInput::make('data.observer_name')
                             ->required()
                             ->label('Observer Name')
-                            ->default(auth()->user()->name)
-                            ->disabled()
+                            ->default($observerName)
                             ->columnSpan(1),
 
                         Forms\Components\DatePicker::make('data.observation_date')
@@ -45,20 +35,38 @@ final class CopusSheet
                             ->disabled()
                             ->columnSpan(2),
                     ])->columns(2),
+
+                    Forms\Components\Textarea::make('data.additional_comments')
+                        ->label('Additional Comments')
+                        ->placeholder('Enter any other general observations or notes about the session')
+                        ->rows(3),
+
+                    Forms\Components\Repeater::make('student_activities')
+                        ->label('Student Activities')
+                        ->schema([
+                            Forms\Components\TextInput::make('activity')
+                                ->label('Activity Description')
+                                ->required(),
+                            Forms\Components\TextInput::make('count')
+                                ->label('Count')
+                                ->required(),
+                        ])
+                        ->columns(2)
+                        ->createItemButtonLabel('Add Student Activity'),
+
+                    Forms\Components\Repeater::make('instructor_activities')
+                        ->label('Instructor Activities')
+                        ->schema([
+                            Forms\Components\TextInput::make('activity')
+                                ->label('Activity Description')
+                                ->required(),
+                            Forms\Components\TextInput::make('count')
+                                ->label('Count')
+                                ->required(),
+                        ])
+                        ->columns(2)
+                        ->createItemButtonLabel('Add Instructor Activity'),
                 ]),
-
-            Forms\Components\View::make('copus.observation-grid')
-                ->viewData([
-                    'timeSegments' => self::$timeSegments,
-                    'studentActivities' => self::getStudentActivities(),
-                    'instructorActivities' => self::getInstructorActivities(),
-                ])
-                ->extraAttributes(['x-data' => '{}']),
-
-            Forms\Components\Textarea::make('data.additional_comments')
-                ->label('Additional Comments')
-                ->placeholder('Enter any other general observations or notes about the session')
-                ->rows(3)
         ];
     }
 

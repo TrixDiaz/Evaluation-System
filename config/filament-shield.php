@@ -2,7 +2,7 @@
 
 return [
     'shield_resource' => [
-        'should_register_navigation' => false,
+        'should_register_navigation' => true,
         'slug' => 'shield/roles',
         'navigation_sort' => -1,
         'navigation_badge' => true,
@@ -22,6 +22,13 @@ return [
     'super_admin' => [
         'enabled' => true,
         'name' => 'super_admin',
+        'define_via_gate' => false,
+        'intercept_gate' => 'before', // after
+    ],
+
+    'professor' => [
+        'enabled' => true,
+        'name' => 'professor',
         'define_via_gate' => false,
         'intercept_gate' => 'before', // after
     ],

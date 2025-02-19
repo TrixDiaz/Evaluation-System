@@ -32,11 +32,11 @@
   ),
   'pages' => 
   array (
-    'C:\\Users\\Trix\\Desktop\\authenticationonly\\app\\Filament\\App\\Pages\\Dashboard.php' => 'App\\Filament\\App\\Pages\\Dashboard',
+    'C:\\Users\\Trix\\Desktop\\authenticationOnly\\app\\Filament\\App\\Pages\\Dashboard.php' => 'App\\Filament\\App\\Pages\\Dashboard',
   ),
   'pageDirectories' => 
   array (
-    0 => 'C:\\Users\\Trix\\Desktop\\authenticationonly\\app\\Filament/App/Pages',
+    0 => 'C:\\Users\\Trix\\Desktop\\authenticationOnly\\app\\Filament/App/Pages',
   ),
   'pageNamespaces' => 
   array (
@@ -44,12 +44,12 @@
   ),
   'resources' => 
   array (
-    'C:\\Users\\Trix\\Desktop\\authenticationonly\\app\\Filament\\App\\Resources\\UserResource.php' => 'App\\Filament\\App\\Resources\\UserResource',
+    'C:\\Users\\Trix\\Desktop\\authenticationOnly\\app\\Filament\\App\\Resources\\UserResource.php' => 'App\\Filament\\App\\Resources\\UserResource',
     0 => 'BezhanSalleh\\FilamentShield\\Resources\\RoleResource',
   ),
   'resourceDirectories' => 
   array (
-    0 => 'C:\\Users\\Trix\\Desktop\\authenticationonly\\app\\Filament/App/Resources',
+    0 => 'C:\\Users\\Trix\\Desktop\\authenticationOnly\\app\\Filament/App/Resources',
   ),
   'resourceNamespaces' => 
   array (
@@ -60,7 +60,7 @@
   ),
   'widgetDirectories' => 
   array (
-    0 => 'C:\\Users\\Trix\\Desktop\\authenticationonly\\app\\Filament/App/Widgets',
+    0 => 'C:\\Users\\Trix\\Desktop\\authenticationOnly\\app\\Filament/App/Widgets',
   ),
   'widgetNamespaces' => 
   array (

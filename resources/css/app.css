@@ -1,2 +1,116 @@
 @import "tailwindcss";
+
 @source "../views";
+
+:root {
+    --background: #ffffff;
+    --foreground: #171717;
+}
+
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --background: #0a0a0a;
+        --foreground: #ededed;
+    }
+}
+
+body {
+    color: var(--foreground);
+    background: var(--background);
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+@theme {
+    /* Fonts */
+    --font-title: 'Poppins', sans-serif;
+    --font-paragraph: 'Inter', sans-serif;
+
+    /* Light Themes */
+    --color-surface: var(--color-amber-50);
+    --color-surface-alt: var(--color-amber-100);
+    --color-on-surface: var(--color-neutral-500);
+    --color-on-surface-strong: var(--color-neutral-700);
+    --color-primary: var(--color-rose-400);
+    --color-on-primary: var(--color-white);
+    --color-secondary: var(--color-orange-200);
+    --color-on-secondary: var(--color-neutral-800);
+    --color-outline: var(--color-neutral-200);
+    --color-outline-strong: var(--color-neutral-500);
+
+    /* Dark Theme */
+    --color-surface-dark: var(--color-neutral-900);
+    --color-surface-dark-alt: var(--color-neutral-800);
+    --color-on-surface-dark: var(--color-violet-100);
+    --color-on-surface-dark-strong: var(--color-white);
+    --color-primary-dark: var(--color-rose-400);
+    --color-on-primary-dark: var(--color-white);
+    --color-secondary-dark: var(--color-orange-200);
+    --color-on-secondary-dark: var(--color-neutral-800);
+    --color-outline-dark: var(--color-neutral-700);
+    --color-outline-dark-strong: var(--color-neutral-600);
+
+    /* Shared Colors */
+    --color-info: var(--color-blue-300);
+    --color-on-info: var(--color-sky-800);
+    --color-success: var(--color-green-300);
+    --color-on-success: var(--color-green-800);
+    --color-warning: var(--color-amber-300);
+    --color-on-warning: var(--color-amber-700);
+    --color-danger: var(--color-red-300);
+    --color-on-danger: var(--color-red-800);
+
+    /* Border Radius */
+    --radius-radius: var(--radius-xl);
+}
+
+@layer base {
+
+    [data-theme=pastel] {
+        /* Fonts */
+        --font-body: 'Playpen Sans', cursive;
+        --font-title: 'Playpen Sans', cursive;
+
+        /* Light Theme */
+        --color-surface: var(--color-amber-50);
+        --color-surface-alt: var(--color-amber-100);
+        --color-on-surface: var(--color-neutral-500);
+        --color-on-surface-strong: var(--color-neutral-700);
+        --color-primary: var(--color-rose-400);
+        --color-on-primary: var(--color-white);
+        --color-secondary: var(--color-orange-200);
+        --color-on-secondary: var(--color-neutral-800);
+        --color-outline: var(--color-neutral-200);
+        --color-outline-strong: var(--color-neutral-500);
+
+        /* Dark Theme */
+        --color-surface-dark: var(--color-neutral-900);
+        --color-surface-dark-alt: var(--color-neutral-800);
+        --color-on-surface-dark: var(--color-violet-100);
+        --color-on-surface-dark-strong: var(--color-white);
+        --color-primary-dark: var(--color-rose-400);
+        --color-on-primary-dark: var(--color-white);
+        --color-secondary-dark: var(--color-orange-200);
+        --color-on-secondary-dark: var(--color-neutral-800);
+        --color-outline-dark: var(--color-neutral-700);
+        --color-outline-dark-strong: var(--color-neutral-600);
+
+        /* Shared Colors */
+        --color-info: var(--color-blue-300);
+        --color-on-info: var(--color-sky-800);
+        --color-success: var(--color-green-300);
+        --color-on-success: var(--color-green-800);
+        --color-warning: var(--color-amber-300);
+        --color-on-warning: var(--color-amber-700);
+        --color-danger: var(--color-red-300);
+        --color-on-danger: var(--color-red-800);
+
+        /* Border Radius */
+        --radius-radius: var(--radius-xl);
+    }
+
+}
+
+
+
+

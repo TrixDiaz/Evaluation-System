@@ -6,6 +6,8 @@ namespace App\Models;
 use Filament\Models\Contracts\FilamentUser;
 use Filament\Panel;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -32,6 +34,8 @@ class User extends Authenticatable implements FilamentUser
         'name',
         'email',
         'password',
+        'parent_id',
+        'children_id'
     ];
 
     /**
@@ -61,4 +65,15 @@ class User extends Authenticatable implements FilamentUser
     {
         return $this->hasMany(Schedule::class, 'professor_id');
     }
+
+    public function parents()
+    {
+        return $this->belongsToMany(User::class, 'user_user', 'child_id', 'parent_id');
+    }
+
+    public function children()
+    {
+        return $this->belongsToMany(User::class, 'user_user', 'parent_id', 'child_id');
+    }
+
 }

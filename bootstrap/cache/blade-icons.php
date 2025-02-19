@@ -1,7 +1,7 @@
 <?php return array (
   'heroicons' => 
   array (
-    'C:\\Users\\Trix\\Desktop\\authenticationonly\\vendor\\blade-ui-kit\\blade-heroicons\\src/../resources/svg' => 
+    'C:\\Users\\Trix\\Desktop\\authenticationOnly\\vendor\\blade-ui-kit\\blade-heroicons\\src/../resources/svg' => 
     array (
       0 => 'c-academic-cap',
       1 => 'c-adjustments-horizontal',
