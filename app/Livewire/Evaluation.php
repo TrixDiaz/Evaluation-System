@@ -130,6 +130,9 @@ class Evaluation extends Component implements HasForms, HasTable
                     })
                     ->native(false),
             ], layout: \Filament\Tables\Enums\FiltersLayout::AboveContent)
+            ->actions([
+                \Filament\Tables\Actions\Action::make('copus1'),
+            ])
             ->filtersFormColumns(3)
             ->emptyStateHeading('No Schedules found')
             ->defaultPaginationPageOption(10)

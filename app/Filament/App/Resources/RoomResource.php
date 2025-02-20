@@ -21,6 +21,8 @@ class RoomResource extends Resource
 
     protected static ?string $navigationGroup = 'Resource Group';
 
+    protected static ?int $navigationSort = 3;
+
     public static function getNavigationBadge(): ?string
     {
         return static::getModel()::count();

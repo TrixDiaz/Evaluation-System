@@ -37,6 +37,11 @@ class AppPanelProvider extends PanelProvider
                 'primary' => Color::Emerald,
                 'secondary' => Color::Sky,
             ])
+            ->navigationGroups([
+                'Evaluation',
+                'Resource Group',
+                'System Settings'
+            ])
             ->navigationItems([
 //                NavigationItem::make('Analytics')
 //                    ->url('https://filament.pirsch.io', shouldOpenInNewTab: true)

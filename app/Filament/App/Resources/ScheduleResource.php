@@ -21,6 +21,8 @@ class ScheduleResource extends Resource
 
     protected static ?string $navigationGroup = 'Resource Group';
 
+    protected static ?int $navigationSort = 4;
+
     public static function getNavigationBadge(): ?string
     {
         return static::getModel()::count();
