@@ -1,10 +1,20 @@
 <?php return array (
   'livewireComponents' => 
   array (
+    'app.filament.app.resources.course-resource.pages.create-course' => 'App\\Filament\\App\\Resources\\CourseResource\\Pages\\CreateCourse',
+    'app.filament.app.resources.course-resource.pages.edit-course' => 'App\\Filament\\App\\Resources\\CourseResource\\Pages\\EditCourse',
+    'app.filament.app.resources.course-resource.pages.list-courses' => 'App\\Filament\\App\\Resources\\CourseResource\\Pages\\ListCourses',
+    'app.filament.app.resources.schedule-resource.pages.create-schedule' => 'App\\Filament\\App\\Resources\\ScheduleResource\\Pages\\CreateSchedule',
+    'app.filament.app.resources.schedule-resource.pages.edit-schedule' => 'App\\Filament\\App\\Resources\\ScheduleResource\\Pages\\EditSchedule',
+    'app.filament.app.resources.schedule-resource.pages.list-schedules' => 'App\\Filament\\App\\Resources\\ScheduleResource\\Pages\\ListSchedules',
+    'app.filament.app.resources.subject-resource.pages.create-subject' => 'App\\Filament\\App\\Resources\\SubjectResource\\Pages\\CreateSubject',
+    'app.filament.app.resources.subject-resource.pages.edit-subject' => 'App\\Filament\\App\\Resources\\SubjectResource\\Pages\\EditSubject',
+    'app.filament.app.resources.subject-resource.pages.list-subjects' => 'App\\Filament\\App\\Resources\\SubjectResource\\Pages\\ListSubjects',
     'app.filament.app.resources.user-resource.pages.create-user' => 'App\\Filament\\App\\Resources\\UserResource\\Pages\\CreateUser',
     'app.filament.app.resources.user-resource.pages.edit-user' => 'App\\Filament\\App\\Resources\\UserResource\\Pages\\EditUser',
     'app.filament.app.resources.user-resource.pages.list-users' => 'App\\Filament\\App\\Resources\\UserResource\\Pages\\ListUsers',
     'app.filament.app.pages.dashboard' => 'App\\Filament\\App\\Pages\\Dashboard',
+    'app.filament.app.pages.evaluation' => 'App\\Filament\\App\\Pages\\Evaluation',
     'filament.livewire.database-notifications' => 'Filament\\Livewire\\DatabaseNotifications',
     'filament.pages.auth.edit-profile' => 'Filament\\Pages\\Auth\\EditProfile',
     'filament.livewire.global-search' => 'Filament\\Livewire\\GlobalSearch',
@@ -33,6 +43,7 @@
   'pages' => 
   array (
     'C:\\Users\\Trix\\Desktop\\authenticationOnly\\app\\Filament\\App\\Pages\\Dashboard.php' => 'App\\Filament\\App\\Pages\\Dashboard',
+    'C:\\Users\\Trix\\Desktop\\authenticationOnly\\app\\Filament\\App\\Pages\\Evaluation.php' => 'App\\Filament\\App\\Pages\\Evaluation',
   ),
   'pageDirectories' => 
   array (
@@ -44,6 +55,9 @@
   ),
   'resources' => 
   array (
+    'C:\\Users\\Trix\\Desktop\\authenticationOnly\\app\\Filament\\App\\Resources\\CourseResource.php' => 'App\\Filament\\App\\Resources\\CourseResource',
+    'C:\\Users\\Trix\\Desktop\\authenticationOnly\\app\\Filament\\App\\Resources\\ScheduleResource.php' => 'App\\Filament\\App\\Resources\\ScheduleResource',
+    'C:\\Users\\Trix\\Desktop\\authenticationOnly\\app\\Filament\\App\\Resources\\SubjectResource.php' => 'App\\Filament\\App\\Resources\\SubjectResource',
     'C:\\Users\\Trix\\Desktop\\authenticationOnly\\app\\Filament\\App\\Resources\\UserResource.php' => 'App\\Filament\\App\\Resources\\UserResource',
     0 => 'BezhanSalleh\\FilamentShield\\Resources\\RoleResource',
   ),
