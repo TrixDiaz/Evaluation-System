@@ -76,18 +76,24 @@ class Evaluation extends Component implements HasForms, HasTable
                 \Filament\Tables\Filters\SelectFilter::make('professor_id')
                     ->label('Professor')
                     ->options(function () use ($filters) {
-                        if (!isset($filters['course_id'])) {
-                            return User::role('professor')
-                                ->pluck('name', 'id')
-                                ->toArray();
+                        $authUser = \Illuminate\Support\Facades\Auth::user();
+
+                        // Get only the professors assigned to the dean
+                        $professorIds = \App\Models\DeanProfessorList::where('parent_id', $authUser->id)
+                            ->pluck('child_id')
+                            ->toArray();
+
+                        $query = User::role('professor')->whereIn('id', $professorIds);
+
+
+
+                        if (isset($filters['course_id'])) {
+                            $query->whereHas('schedules', function ($q) use ($filters) {
+                                $q->where('course_id', $filters['course_id']);
+                            });
                         }
 
-                        return User::role('professor')
-                            ->whereHas('schedules', function ($query) use ($filters) {
-                                $query->where('course_id', $filters['course_id']);
-                            })
-                            ->pluck('name', 'id')
-                            ->toArray();
+                        return $query->pluck('name', 'id')->toArray();
                     })
                     ->native(false),
 

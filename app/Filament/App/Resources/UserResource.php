@@ -8,7 +8,6 @@ use App\Models\User;
 use BezhanSalleh\FilamentShield\Contracts\HasShieldPermissions;
 use Filament\Forms;
 use Filament\Forms\Form;
-use Filament\Resources\Components\Tab;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
@@ -96,10 +95,15 @@ class UserResource extends Resource implements HasShieldPermissions
                             ->hidden(fn() => auth()->user()->cannot('assign_parent_user')),
                         Forms\Components\Select::make('children')
                             ->label('Sub Users')
-                            ->relationship('children', 'name')
+                            ->relationship(
+                                'children',
+                                'name',
+                                fn (Builder $query) => $query->whereHas('roles', fn ($q) => $q->where('name', 'professor'))
+                            )
                             ->multiple()
                             ->preload()
                             ->searchable(),
+
                     ])->columns(2)
             ]);
     }
