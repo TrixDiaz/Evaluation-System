@@ -936,6 +936,32 @@
       'default' => 'icon',
     ),
   ),
+  'filament-apex-charts' => 
+  array (
+    'chart_options' => 
+    array (
+      0 => 'Empty',
+      1 => 'Area',
+      2 => 'Bar',
+      3 => 'Boxplot',
+      4 => 'Bubble',
+      5 => 'Candlestick',
+      6 => 'Column',
+      7 => 'Donut',
+      8 => 'Heatmap',
+      9 => 'Line',
+      10 => 'Mixed-LineAndColumn',
+      11 => 'Pie',
+      12 => 'PolarArea',
+      13 => 'Radar',
+      14 => 'Radialbar',
+      15 => 'RangeArea',
+      16 => 'Scatter',
+      17 => 'TimelineRangeBars',
+      18 => 'Treemap',
+      19 => 'Funnel',
+    ),
+  ),
   'livewire' => 
   array (
     'class_namespace' => 'App\\Livewire',

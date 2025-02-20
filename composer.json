@@ -7,10 +7,12 @@
     "license": "MIT",
     "require": {
         "php": "^8.2",
+        "awcodes/light-switch": "^1.0",
         "bezhansalleh/filament-shield": "^3.3",
         "filament/filament": "^3.2",
         "laravel/framework": "^11.31",
         "laravel/tinker": "^2.10",
+        "leandrocfe/filament-apex-charts": "^3.1",
         "livewire/livewire": "^3.5"
     },
     "require-dev": {

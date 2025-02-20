@@ -2,9 +2,9 @@
 
 namespace App\Filament\App\Resources;
 
-use App\Filament\App\Resources\SubjectResource\Pages;
-use App\Filament\App\Resources\SubjectResource\RelationManagers;
-use App\Models\Subject;
+use App\Filament\App\Resources\RoomResource\Pages;
+use App\Filament\App\Resources\RoomResource\RelationManagers;
+use App\Models\Room;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -13,11 +13,11 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-class SubjectResource extends Resource
+class RoomResource extends Resource
 {
-    protected static ?string $model = Subject::class;
+    protected static ?string $model = Room::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-bookmark';
+    protected static ?string $navigationIcon = 'heroicon-o-building-office';
 
     protected static ?string $navigationGroup = 'Resource Group';
 
@@ -32,7 +32,7 @@ class SubjectResource extends Resource
             ->schema([
                 Forms\Components\Section::make()->schema([
                     Forms\Components\Grid::make(2)
-                        ->schema(\App\Services\DynamicForm::schema(\App\Models\Subject::class))->columns(2),
+                        ->schema(\App\Services\DynamicForm::schema(\App\Models\Room::class))->columns(2),
                 ])->columnSpan(['lg' => fn(string $operation) => $operation === 'create' ? 3 : 2]),
 
                 Forms\Components\Grid::make(1)->schema([
@@ -48,7 +48,7 @@ class SubjectResource extends Resource
                             ->label('Created at')
                             ->hiddenOn('create')
                             ->content(function (\Illuminate\Database\Eloquent\Model $record): string {
-                                $category = \App\Models\Subject::find($record->id);
+                                $category = \App\Models\Room::find($record->id);
                                 $now = \Carbon\Carbon::now();
 
                                 $diff = $category->created_at->diff($now);
@@ -98,7 +98,7 @@ class SubjectResource extends Resource
                         Forms\Components\Placeholder::make('updated_at')
                             ->label('Last modified at')
                             ->content(function (\Illuminate\Database\Eloquent\Model $record): string {
-                                $category = \App\Models\Subject::find($record->id);
+                                $category = \App\Models\Room::find($record->id);
                                 $now = \Carbon\Carbon::now();
 
                                 $diff = $category->updated_at->diff($now);
@@ -220,9 +220,9 @@ class SubjectResource extends Resource
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListSubjects::route('/'),
-            'create' => Pages\CreateSubject::route('/create'),
-            'edit' => Pages\EditSubject::route('/{record}/edit'),
+            'index' => Pages\ListRooms::route('/'),
+            'create' => Pages\CreateRoom::route('/create'),
+            'edit' => Pages\EditRoom::route('/{record}/edit'),
         ];
     }
 }

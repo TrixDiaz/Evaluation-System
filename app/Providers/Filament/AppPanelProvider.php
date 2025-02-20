@@ -64,6 +64,8 @@ class AppPanelProvider extends PanelProvider
                 Authenticate::class,
             ])
             ->plugins([
+                \Awcodes\LightSwitch\LightSwitchPlugin::make(),
+                \Leandrocfe\FilamentApexCharts\FilamentApexChartsPlugin::make(),
                 \BezhanSalleh\FilamentShield\FilamentShieldPlugin::make()
                     ->gridColumns([
                         'default' => 1,

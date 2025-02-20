@@ -4,6 +4,9 @@
     'app.filament.app.resources.course-resource.pages.create-course' => 'App\\Filament\\App\\Resources\\CourseResource\\Pages\\CreateCourse',
     'app.filament.app.resources.course-resource.pages.edit-course' => 'App\\Filament\\App\\Resources\\CourseResource\\Pages\\EditCourse',
     'app.filament.app.resources.course-resource.pages.list-courses' => 'App\\Filament\\App\\Resources\\CourseResource\\Pages\\ListCourses',
+    'app.filament.app.resources.room-resource.pages.create-room' => 'App\\Filament\\App\\Resources\\RoomResource\\Pages\\CreateRoom',
+    'app.filament.app.resources.room-resource.pages.edit-room' => 'App\\Filament\\App\\Resources\\RoomResource\\Pages\\EditRoom',
+    'app.filament.app.resources.room-resource.pages.list-rooms' => 'App\\Filament\\App\\Resources\\RoomResource\\Pages\\ListRooms',
     'app.filament.app.resources.schedule-resource.pages.create-schedule' => 'App\\Filament\\App\\Resources\\ScheduleResource\\Pages\\CreateSchedule',
     'app.filament.app.resources.schedule-resource.pages.edit-schedule' => 'App\\Filament\\App\\Resources\\ScheduleResource\\Pages\\EditSchedule',
     'app.filament.app.resources.schedule-resource.pages.list-schedules' => 'App\\Filament\\App\\Resources\\ScheduleResource\\Pages\\ListSchedules',
@@ -56,6 +59,7 @@
   'resources' => 
   array (
     'C:\\Users\\Trix\\Desktop\\authenticationOnly\\app\\Filament\\App\\Resources\\CourseResource.php' => 'App\\Filament\\App\\Resources\\CourseResource',
+    'C:\\Users\\Trix\\Desktop\\authenticationOnly\\app\\Filament\\App\\Resources\\RoomResource.php' => 'App\\Filament\\App\\Resources\\RoomResource',
     'C:\\Users\\Trix\\Desktop\\authenticationOnly\\app\\Filament\\App\\Resources\\ScheduleResource.php' => 'App\\Filament\\App\\Resources\\ScheduleResource',
     'C:\\Users\\Trix\\Desktop\\authenticationOnly\\app\\Filament\\App\\Resources\\SubjectResource.php' => 'App\\Filament\\App\\Resources\\SubjectResource',
     'C:\\Users\\Trix\\Desktop\\authenticationOnly\\app\\Filament\\App\\Resources\\UserResource.php' => 'App\\Filament\\App\\Resources\\UserResource',
