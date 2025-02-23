@@ -151,7 +151,7 @@ class Evaluation extends Component implements HasForms, HasTable
                         return $evaluated ? 'This schedule has already been evaluated' : 'Create COPUS evaluation';
                     })
                     ->form(fn ($record) => \App\Services\Evaluation::schema($record))
-                    ->modalWidth('full')
+                    ->modalWidth('7xl')
                     ->action(function (array $data, $record) {
                       $success = \App\Models\Evaluation::create([
                             'dean_id' => auth()->user()->id,
@@ -167,13 +167,6 @@ class Evaluation extends Component implements HasForms, HasTable
                             ->title('New COPUS Evaluation Submitted')
                             ->icon('heroicon-o-document-text')
                             ->body("A new evaluation has been submitted for your {$record->course->name} course.")
-                            ->actions([
-                                \Filament\Actions\Action::make('view')
-                                    ->button()
-                                    ->label('View Evaluation')
-                                    ->url(route('evaluations.show', $evaluation->id))
-                                    ->markAsRead(),
-                            ])
                             ->sendToDatabase($record->professor);
 
                         // Show success notification to the dean

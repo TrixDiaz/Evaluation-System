@@ -6,38 +6,51 @@ use Filament\Forms;
 
 final class Evaluation
 {
-    const MINUTES = ['0-2', '3-4', '5-6', '7-8', '9-10'];
+    const MINUTES = ['0-2', '3-5', '6-8', '9-11', '12-14']; // Define minute intervals
+
+    // Function to generate checkbox options with minute intervals
+    private static function generateOptionsGrid(array $codes): array
+    {
+        $options = [];
+        foreach (self::MINUTES as $minute) {
+            foreach ($codes as $code => $description) {
+                $options["{$minute}.{$code}"] = "{$minute} min - {$description}"; // Label includes minute interval
+            }
+        }
+        return $options;
+    }
 
     const STUDENT_CODES = [
-        'L' => 'Listening to instructor',
-        'Ind' => 'Individual thinking/problem solving',
-        'CG' => 'Clicker Group Discussion',
-        'WG' => 'Working in groups',
-        'OG' => 'Other group activities',
-        'AnQ' => 'Answering question',
-        'SQ' => 'Student question',
-        'WC' => 'Whole class discussion',
-        'Prd' => 'Making predictions',
-        'SP' => 'Student presentation',
-        'T/Q' => 'Test/Quiz',
-        'W' => 'Waiting',
-        'O' => 'Other'
+        'L' => 'L',
+        'Ind' => 'Ind',
+        'CG' => 'CG',
+        'WG' => 'WG',
+        'OG' => 'OG',
+        'AnQ' => 'AnQ',
+        'SQ' => 'SQ',
+        'WC' => 'WC',
+        'Prd' => 'Prd',
+        'SP' => 'SP',
+        'T/Q' => 'T/Q',
+        'W' => 'W',
+        'O' => 'O'
     ];
 
     const INSTRUCTOR_CODES = [
-        'Lec' => 'Lecturing',
-        'RtW' => 'Real-time writing',
-        'Fup' => 'Follow-up/feedback on clicker question or activity',
-        'PQ' => 'Posing non-clicker question',
-        'CQ' => 'Clicker question',
-        'AnQ' => 'Answering student question',
-        'MG' => 'Moving through group work',
-        '1o1' => 'One-on-one extended discussion',
-        'D/V' => 'Demo/video',
-        'Adm' => 'Administrative task',
-        'W' => 'Waiting',
-        'O' => 'Other'
+        'Lec' => 'Lec',
+        'RtW' => 'RtW',
+        'Fup' => 'Fup',
+        'PQ' => 'PQ',
+        'CQ' => 'CQ',
+        'AnQ' => 'AnQ',
+        'MG' => 'MG',
+        '1o1' => '1o1',
+        'D/V' => 'D/V',
+        'Adm' => 'Adm',
+        'W' => 'W',
+        'O' => 'O'
     ];
+
     public static function schema($record): array
     {
         $authUser = auth()->user();
@@ -75,19 +88,21 @@ final class Evaluation
                             Forms\Components\Tabs\Tab::make('1. Students doing')
                                 ->schema([
                                     Forms\Components\CheckboxList::make('student_activities')
+                                        ->label('Student Activities per Minute Interval')
                                         ->gridDirection('row')
-                                        ->columns(count(self::STUDENT_CODES) + 1)
+                                        ->columns(13) // Adjust columns for better display
                                         ->options(self::generateOptionsGrid(self::STUDENT_CODES))
-                                        ->columns(13),
+                                        ->bulkToggleable(),
                                 ]),
 
                             Forms\Components\Tabs\Tab::make('2. Instructor doing')
                                 ->schema([
                                     Forms\Components\CheckboxList::make('instructor_activities')
+                                        ->label('Instructor Activities per Minute Interval')
                                         ->gridDirection('row')
-                                        ->columns(count(self::INSTRUCTOR_CODES) + 1)
+                                        ->columns(13)
                                         ->options(self::generateOptionsGrid(self::INSTRUCTOR_CODES))
-                                        ->columns(13),
+                                        ->bulkToggleable(),
                                 ]),
                         ]),
                 ]),
@@ -102,16 +117,5 @@ final class Evaluation
                 ->collapsed()
                 ->collapsible(),
         ];
-    }
-
-    private static function generateOptionsGrid(array $codes): array
-    {
-        $options = [];
-        foreach (self::MINUTES as $minute) {
-            foreach ($codes as $code => $description) {
-                $options["{$minute}.{$code}"] = $code;
-            }
-        }
-        return $options;
     }
 }
