@@ -63,36 +63,31 @@ final class Evaluation
                     Forms\Components\Placeholder::make('semester_year')
                         ->label('Semester & Year')
                         ->content("{$record->semester} - {$record->year}"),
-                ]),
+                ])
+                ->columns(2)
+                ->collapsed()
+                ->collapsible(),
 
             Forms\Components\Section::make('COPUS Observation Matrix')
                 ->schema([
-                    Forms\Components\Grid::make(2)
+                    Forms\Components\Tabs::make()
                         ->schema([
-                            Forms\Components\Section::make('1. Students doing')
+                            Forms\Components\Tabs\Tab::make('1. Students doing')
                                 ->schema([
                                     Forms\Components\CheckboxList::make('student_activities')
                                         ->gridDirection('row')
                                         ->columns(count(self::STUDENT_CODES) + 1)
                                         ->options(self::generateOptionsGrid(self::STUDENT_CODES))
-                                        ->descriptions([
-                                            'L' => 'Listening to instructor',
-                                            'Ind' => 'Individual thinking/problem solving',
-                                            // ... add descriptions for all codes
-                                        ]),
+                                        ->columns(13),
                                 ]),
 
-                            Forms\Components\Section::make('2. Instructor doing')
+                            Forms\Components\Tabs\Tab::make('2. Instructor doing')
                                 ->schema([
                                     Forms\Components\CheckboxList::make('instructor_activities')
                                         ->gridDirection('row')
                                         ->columns(count(self::INSTRUCTOR_CODES) + 1)
                                         ->options(self::generateOptionsGrid(self::INSTRUCTOR_CODES))
-                                        ->descriptions([
-                                            'Lec' => 'Lecturing',
-                                            'RtW' => 'Real-time writing',
-                                            // ... add descriptions for all codes
-                                        ]),
+                                        ->columns(13),
                                 ]),
                         ]),
                 ]),
@@ -103,7 +98,9 @@ final class Evaluation
                         ->label('Comments')
                         ->placeholder('Enter any additional comments, explanations of analogies, etc.')
                         ->rows(3),
-                ]),
+                ])
+                ->collapsed()
+                ->collapsible(),
         ];
     }
 
