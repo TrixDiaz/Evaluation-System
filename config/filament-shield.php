@@ -26,13 +26,6 @@ return [
         'intercept_gate' => 'before', // after
     ],
 
-    'professor' => [
-        'enabled' => true,
-        'name' => 'professor',
-        'define_via_gate' => false,
-        'intercept_gate' => 'before', // after
-    ],
-
     'panel_user' => [
         'enabled' => true,
         'name' => 'panel_user',

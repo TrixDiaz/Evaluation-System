@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\Schedule;
 use Filament\Forms\Concerns\InteractsWithForms;
 use Filament\Forms\Contracts\HasForms;
+use Filament\Notifications\Notification;
 use Filament\Tables\Concerns\InteractsWithTable;
 use Filament\Tables\Contracts\HasTable;
 use Filament\Tables\Table;
@@ -131,7 +132,54 @@ class Evaluation extends Component implements HasForms, HasTable
                     ->native(false),
             ], layout: \Filament\Tables\Enums\FiltersLayout::AboveContent)
             ->actions([
-                \Filament\Tables\Actions\Action::make('copus1'),
+                \Filament\Tables\Actions\Action::make('copus1')
+                    ->label('Copus')
+                    ->button()
+                    ->disabled(function ($record) {
+                        return \App\Models\Evaluation::where('schedule_id', $record->id)
+                            ->where('dean_id', auth()->user()->id)
+                            ->exists();
+                    })
+                    ->tooltip(function ($record) {
+                        $evaluated = \App\Models\Evaluation::where('schedule_id', $record->id)
+                            ->where('dean_id', auth()->user()->id)
+                            ->exists();
+
+                        return $evaluated ? 'This schedule has already been evaluated' : 'Create COPUS evaluation';
+                    })
+                    ->form(fn ($record) => \App\Services\Evaluation::schema($record))
+                    ->action(function (array $data, $record) {
+                      $success = \App\Models\Evaluation::create([
+                            'dean_id' => auth()->user()->id,
+                            'schedule_id' => $record->id,
+                            'observation_date' => now(),
+                            'student_activities' => $data['student_activities'] ?? [],
+                            'instructor_activities' => $data['instructor_activities'] ?? [],
+                            'additional_comments' => $data['additional_comments'],
+                        ]);
+
+                        // Send notification to the professor using Filament
+                        Notification::make()
+                            ->title('New COPUS Evaluation Submitted')
+                            ->icon('heroicon-o-document-text')
+                            ->body("A new evaluation has been submitted for your {$record->course->name} course.")
+                            ->actions([
+                                \Filament\Actions\Action::make('view')
+                                    ->button()
+                                    ->label('View Evaluation')
+                                    ->url(route('evaluations.show', $evaluation->id))
+                                    ->markAsRead(),
+                            ])
+                            ->sendToDatabase($record->professor);
+
+                        // Show success notification to the dean
+                        Notification::make()
+                            ->success()
+                            ->title('Evaluation Submitted')
+                            ->body("The evaluation has been submitted successfully and {$record->professor->name} has been notified.")
+                            ->persistent()
+                            ->send();
+                    }),
             ])
             ->filtersFormColumns(3)
             ->emptyStateHeading('No Schedules found')

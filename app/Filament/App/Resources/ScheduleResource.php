@@ -63,25 +63,15 @@ class ScheduleResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('course.name')
-                    ->numeric()
-                    ->sortable(),
+                    ->sortable()
+                    ->description(fn ($record): string => $record->room?->name),
                 Tables\Columns\TextColumn::make('professor.name')
-                    ->numeric()
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('subject.name')
-                    ->numeric()
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('room.name')
-                    ->numeric()
-                    ->sortable(),
+                    ->sortable()
+                    ->description(fn ($record): string => $record->subject?->name),
                 Tables\Columns\TextColumn::make('name')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('time'),
-                Tables\Columns\TextColumn::make('semester')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('year')
-                    ->numeric()
-                    ->sortable(),
+                    ->description(fn ($record): string => $record->semester),
+                Tables\Columns\TextColumn::make('time')
+                    ->description(fn ($record): string => 'Year ' . $record->year),
                 Tables\Columns\IconColumn::make('is_active')
                     ->boolean(),
                 Tables\Columns\TextColumn::make('deleted_at')
@@ -101,7 +91,22 @@ class ScheduleResource extends Resource
                 //
             ])
             ->actions([
-                Tables\Actions\EditAction::make(),
+                Tables\Actions\ActionGroup::make([
+                    Tables\Actions\ViewAction::make()
+                        ->tooltip('View'),
+                    Tables\Actions\EditAction::make()
+                        ->tooltip('Edit')
+                        ->color('warning'),
+                    Tables\Actions\DeleteAction::make()
+                        ->label('Archive')
+                        ->tooltip('Archive')
+                        ->modalHeading('Archive User'),
+                    Tables\Actions\ForceDeleteAction::make(),
+                    Tables\Actions\RestoreAction::make()
+                        ->color('secondary'),
+                ])
+                    ->icon('heroicon-m-ellipsis-vertical')
+                    ->tooltip('Actions')
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([

@@ -10,9 +10,9 @@ class CreateEvaluationsTable extends Migration
     {
         Schema::create('evaluations', function (Blueprint $table) {
             $table->id();
-            $table->string('observer_name');
+            $table->foreignId('dean_id')->constrained('users')->onDelete('cascade');
+            $table->foreignId('schedule_id')->constrained('schedules')->onDelete('cascade');
             $table->date('observation_date');
-            $table->string('course_name');
             $table->text('additional_comments')->nullable();
             $table->json('student_activities')->nullable();
             $table->json('instructor_activities')->nullable();
