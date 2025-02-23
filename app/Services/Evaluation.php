@@ -6,18 +6,15 @@ use Filament\Forms;
 
 final class Evaluation
 {
-    const MINUTES = ['0-2', '3-5', '6-8', '9-11', '12-14']; // Define minute intervals
-
-    // Function to generate checkbox options with minute intervals
-    private static function generateOptionsGrid(array $codes): array
+    // Generate minute intervals dynamically (2-minute step)
+    private static function generateMinuteIntervals(): array
     {
-        $options = [];
-        foreach (self::MINUTES as $minute) {
-            foreach ($codes as $code => $description) {
-                $options["{$minute}.{$code}"] = "{$minute} min - {$description}"; // Label includes minute interval
-            }
+        $intervals = [];
+        for ($i = 0; $i <= 14; $i += 2) {
+            $end = $i + 2;
+            $intervals[] = "$i-$end";
         }
-        return $options;
+        return $intervals;
     }
 
     const STUDENT_CODES = [
@@ -50,6 +47,21 @@ final class Evaluation
         'W' => 'W',
         'O' => 'O'
     ];
+
+    // Generate grouped options per interval row
+    private static function generateOptionsGrid(array $codes): array
+    {
+        $intervals = self::generateMinuteIntervals();
+        $groupedOptions = [];
+
+        foreach ($intervals as $minute) {
+            foreach ($codes as $code => $description) {
+                $groupedOptions[$minute][$code] = "$description";
+            }
+        }
+
+        return $groupedOptions;
+    }
 
     public static function schema($record): array
     {
@@ -86,24 +98,26 @@ final class Evaluation
                     Forms\Components\Tabs::make()
                         ->schema([
                             Forms\Components\Tabs\Tab::make('1. Students doing')
-                                ->schema([
-                                    Forms\Components\CheckboxList::make('student_activities')
-                                        ->label('Student Activities per Minute Interval')
-                                        ->gridDirection('row')
-                                        ->columns(13) // Adjust columns for better display
-                                        ->options(self::generateOptionsGrid(self::STUDENT_CODES))
-                                        ->bulkToggleable(),
-                                ]),
+                                ->schema(
+                                    array_map(function ($minute, $options) {
+                                        return Forms\Components\CheckboxList::make("student_activities.{$minute}")
+                                            ->label("{$minute} min")
+                                            ->options($options)
+                                            ->bulkToggleable()
+                                            ->columns(4);
+                                    }, array_keys(self::generateOptionsGrid(self::STUDENT_CODES)), self::generateOptionsGrid(self::STUDENT_CODES))
+                                ),
 
                             Forms\Components\Tabs\Tab::make('2. Instructor doing')
-                                ->schema([
-                                    Forms\Components\CheckboxList::make('instructor_activities')
-                                        ->label('Instructor Activities per Minute Interval')
-                                        ->gridDirection('row')
-                                        ->columns(13)
-                                        ->options(self::generateOptionsGrid(self::INSTRUCTOR_CODES))
-                                        ->bulkToggleable(),
-                                ]),
+                                ->schema(
+                                    array_map(function ($minute, $options) {
+                                        return Forms\Components\CheckboxList::make("instructor_activities.{$minute}")
+                                            ->label("{$minute} min")
+                                            ->options($options)
+                                            ->bulkToggleable()
+                                            ->columns(4);
+                                    }, array_keys(self::generateOptionsGrid(self::INSTRUCTOR_CODES)), self::generateOptionsGrid(self::INSTRUCTOR_CODES))
+                                ),
                         ]),
                 ]),
 
