@@ -18,34 +18,34 @@ final class Evaluation
     }
 
     const STUDENT_CODES = [
-        'L' => 'L',
-        'Ind' => 'Ind',
-        'CG' => 'CG',
-        'WG' => 'WG',
-        'OG' => 'OG',
-        'AnQ' => 'AnQ',
-        'SQ' => 'SQ',
-        'WC' => 'WC',
-        'Prd' => 'Prd',
-        'SP' => 'SP',
-        'T/Q' => 'T/Q',
-        'W' => 'W',
-        'O' => 'O'
+        'L' => 'Listening to instructor',
+        'Ind' => 'Individual thinking/problem solving',
+        'CG' => 'Clicker Group Discussion',
+        'WG' => 'Working in groups',
+        'OG' => 'Other group activities',
+        'AnQ' => 'Answering question',
+        'SQ' => 'Student question',
+        'WC' => 'Whole class discussion',
+        'Prd' => 'Making predictions',
+        'SP' => 'Student presentation',
+        'T/Q' => 'Test/Quiz',
+        'W' => 'Waiting',
+        'O' => 'Other'
     ];
 
     const INSTRUCTOR_CODES = [
-        'Lec' => 'Lec',
-        'RtW' => 'RtW',
-        'Fup' => 'Fup',
-        'PQ' => 'PQ',
-        'CQ' => 'CQ',
-        'AnQ' => 'AnQ',
-        'MG' => 'MG',
-        '1o1' => '1o1',
-        'D/V' => 'D/V',
-        'Adm' => 'Adm',
-        'W' => 'W',
-        'O' => 'O'
+        'Lec' => 'Lecturing',
+        'RtW' => 'Real-time writing',
+        'Fup' => 'Follow-up/feedback on clicker question or activity',
+        'PQ' => 'Posing non-clicker question',
+        'CQ' => 'Clicker question',
+        'AnQ' => 'Answering student question',
+        'MG' => 'Moving through group work',
+        '1o1' => 'One-on-one extended discussion',
+        'D/V' => 'Demo/video',
+        'Adm' => 'Administrative task',
+        'W' => 'Waiting',
+        'O' => 'Other'
     ];
 
     // Generate grouped options per interval row
