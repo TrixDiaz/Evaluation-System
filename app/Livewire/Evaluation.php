@@ -135,6 +135,9 @@ class Evaluation extends Component implements HasForms, HasTable
                 \Filament\Tables\Actions\Action::make('copus1')
                     ->label('Copus')
                     ->button()
+                    ->color(fn ($record) => \App\Models\Evaluation::where('schedule_id', $record->id)
+                        ->where('dean_id', auth()->user()->id)
+                        ->exists() ? 'gray' : 'primary') // Gray when disabled, primary otherwise
                     ->disabled(function ($record) {
                         return \App\Models\Evaluation::where('schedule_id', $record->id)
                             ->where('dean_id', auth()->user()->id)
