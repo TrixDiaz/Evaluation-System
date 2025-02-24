@@ -206,6 +206,46 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
+      '/app/quizzes' => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'filament.app.resources.quizzes.index',
+          ),
+          1 => NULL,
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+      ),
+      '/app/quizzes/create' => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'filament.app.resources.quizzes.create',
+          ),
+          1 => NULL,
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+      ),
       '/app/rooms' => 
       array (
         0 => 
@@ -431,7 +471,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::DvaR3LMqXnvBQMoO',
+            '_route' => 'generated::fk9k4ispA4Osmale',
           ),
           1 => NULL,
           2 => 
@@ -451,7 +491,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::H47VfFao5N4oI1Cj',
+            '_route' => 'generated::j2dUkQZFgobiiT5p',
           ),
           1 => NULL,
           2 => 
@@ -490,7 +530,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::AwRZkkjGatUB9Gmd',
+            '_route' => 'generated::eqvVl4JErVKFQom9',
           ),
           1 => NULL,
           2 => 
@@ -510,7 +550,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::zzwfQvwU9syzh7t7',
+            '_route' => 'generated::WmQaB4ZXUe1MjI0F',
           ),
           1 => NULL,
           2 => 
@@ -527,7 +567,7 @@ app('router')->setCompiledRoutes(
     ),
     2 => 
     array (
-      0 => '{^(?|/filament/(?|exports/([^/]++)/download(*:45)|imports/([^/]++)/failed\\-rows/download(*:90))|/app/(?|courses/([^/]++)/edit(*:127)|rooms/([^/]++)/edit(*:154)|s(?|chedules/([^/]++)/edit(*:188)|ubjects/([^/]++)/edit(*:217)|hield/roles/([^/]++)(?|(*:248)|/edit(*:261)))|users/([^/]++)/edit(*:290))|/livewire/preview\\-file/([^/]++)(*:331)|/storage/(.*)(*:352))/?$}sDu',
+      0 => '{^(?|/filament/(?|exports/([^/]++)/download(*:45)|imports/([^/]++)/failed\\-rows/download(*:90))|/app/(?|courses/([^/]++)/edit(*:127)|quizzes/([^/]++)/edit(*:156)|rooms/([^/]++)/edit(*:183)|s(?|chedules/([^/]++)/edit(*:217)|ubjects/([^/]++)/edit(*:246)|hield/roles/([^/]++)(?|(*:277)|/edit(*:290)))|users/([^/]++)/edit(*:319))|/livewire/preview\\-file/([^/]++)(*:360)|/storage/(.*)(*:381))/?$}sDu',
     ),
     3 => 
     array (
@@ -600,7 +640,30 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      154 => 
+      156 => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'filament.app.resources.quizzes.edit',
+          ),
+          1 => 
+          array (
+            0 => 'record',
+          ),
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+      ),
+      183 => 
       array (
         0 => 
         array (
@@ -623,7 +686,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      188 => 
+      217 => 
       array (
         0 => 
         array (
@@ -646,7 +709,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      217 => 
+      246 => 
       array (
         0 => 
         array (
@@ -669,7 +732,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      248 => 
+      277 => 
       array (
         0 => 
         array (
@@ -692,7 +755,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      261 => 
+      290 => 
       array (
         0 => 
         array (
@@ -715,7 +778,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      290 => 
+      319 => 
       array (
         0 => 
         array (
@@ -738,7 +801,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      331 => 
+      360 => 
       array (
         0 => 
         array (
@@ -761,7 +824,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      352 => 
+      381 => 
       array (
         0 => 
         array (
@@ -1384,6 +1447,159 @@ app('router')->setCompiledRoutes(
         'as' => 'filament.app.resources.courses.edit',
         'namespace' => NULL,
         'prefix' => 'app/courses',
+        'where' => 
+        array (
+        ),
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'filament.app.resources.quizzes.index' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'app/quizzes',
+      'action' => 
+      array (
+        'domain' => NULL,
+        'middleware' => 
+        array (
+          0 => 'panel:app',
+          1 => 'Illuminate\\Cookie\\Middleware\\EncryptCookies',
+          2 => 'Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse',
+          3 => 'Illuminate\\Session\\Middleware\\StartSession',
+          4 => 'Illuminate\\Session\\Middleware\\AuthenticateSession',
+          5 => 'Illuminate\\View\\Middleware\\ShareErrorsFromSession',
+          6 => 'Illuminate\\Foundation\\Http\\Middleware\\VerifyCsrfToken',
+          7 => 'Illuminate\\Routing\\Middleware\\SubstituteBindings',
+          8 => 'Filament\\Http\\Middleware\\DisableBladeIconComponents',
+          9 => 'Filament\\Http\\Middleware\\DispatchServingFilamentEvent',
+          10 => 'Filament\\Http\\Middleware\\Authenticate',
+        ),
+        'excluded_middleware' => 
+        array (
+        ),
+        'uses' => 'App\\Filament\\App\\Resources\\QuizResource\\Pages\\ListQuizzes@__invoke',
+        'controller' => 'App\\Filament\\App\\Resources\\QuizResource\\Pages\\ListQuizzes',
+        'as' => 'filament.app.resources.quizzes.index',
+        'namespace' => NULL,
+        'prefix' => 'app/quizzes',
+        'where' => 
+        array (
+        ),
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'filament.app.resources.quizzes.create' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'app/quizzes/create',
+      'action' => 
+      array (
+        'domain' => NULL,
+        'middleware' => 
+        array (
+          0 => 'panel:app',
+          1 => 'Illuminate\\Cookie\\Middleware\\EncryptCookies',
+          2 => 'Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse',
+          3 => 'Illuminate\\Session\\Middleware\\StartSession',
+          4 => 'Illuminate\\Session\\Middleware\\AuthenticateSession',
+          5 => 'Illuminate\\View\\Middleware\\ShareErrorsFromSession',
+          6 => 'Illuminate\\Foundation\\Http\\Middleware\\VerifyCsrfToken',
+          7 => 'Illuminate\\Routing\\Middleware\\SubstituteBindings',
+          8 => 'Filament\\Http\\Middleware\\DisableBladeIconComponents',
+          9 => 'Filament\\Http\\Middleware\\DispatchServingFilamentEvent',
+          10 => 'Filament\\Http\\Middleware\\Authenticate',
+        ),
+        'excluded_middleware' => 
+        array (
+        ),
+        'uses' => 'App\\Filament\\App\\Resources\\QuizResource\\Pages\\CreateQuiz@__invoke',
+        'controller' => 'App\\Filament\\App\\Resources\\QuizResource\\Pages\\CreateQuiz',
+        'as' => 'filament.app.resources.quizzes.create',
+        'namespace' => NULL,
+        'prefix' => 'app/quizzes',
+        'where' => 
+        array (
+        ),
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'filament.app.resources.quizzes.edit' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'app/quizzes/{record}/edit',
+      'action' => 
+      array (
+        'domain' => NULL,
+        'middleware' => 
+        array (
+          0 => 'panel:app',
+          1 => 'Illuminate\\Cookie\\Middleware\\EncryptCookies',
+          2 => 'Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse',
+          3 => 'Illuminate\\Session\\Middleware\\StartSession',
+          4 => 'Illuminate\\Session\\Middleware\\AuthenticateSession',
+          5 => 'Illuminate\\View\\Middleware\\ShareErrorsFromSession',
+          6 => 'Illuminate\\Foundation\\Http\\Middleware\\VerifyCsrfToken',
+          7 => 'Illuminate\\Routing\\Middleware\\SubstituteBindings',
+          8 => 'Filament\\Http\\Middleware\\DisableBladeIconComponents',
+          9 => 'Filament\\Http\\Middleware\\DispatchServingFilamentEvent',
+          10 => 'Filament\\Http\\Middleware\\Authenticate',
+        ),
+        'excluded_middleware' => 
+        array (
+        ),
+        'uses' => 'App\\Filament\\App\\Resources\\QuizResource\\Pages\\EditQuiz@__invoke',
+        'controller' => 'App\\Filament\\App\\Resources\\QuizResource\\Pages\\EditQuiz',
+        'as' => 'filament.app.resources.quizzes.edit',
+        'namespace' => NULL,
+        'prefix' => 'app/quizzes',
         'where' => 
         array (
         ),
@@ -2249,7 +2465,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::DvaR3LMqXnvBQMoO' => 
+    'generated::fk9k4ispA4Osmale' => 
     array (
       'methods' => 
       array (
@@ -2261,7 +2477,7 @@ app('router')->setCompiledRoutes(
       array (
         'uses' => 'Livewire\\Mechanisms\\FrontendAssets\\FrontendAssets@returnJavaScriptAsFile',
         'controller' => 'Livewire\\Mechanisms\\FrontendAssets\\FrontendAssets@returnJavaScriptAsFile',
-        'as' => 'generated::DvaR3LMqXnvBQMoO',
+        'as' => 'generated::fk9k4ispA4Osmale',
       ),
       'fallback' => false,
       'defaults' => 
@@ -2277,7 +2493,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::H47VfFao5N4oI1Cj' => 
+    'generated::j2dUkQZFgobiiT5p' => 
     array (
       'methods' => 
       array (
@@ -2289,7 +2505,7 @@ app('router')->setCompiledRoutes(
       array (
         'uses' => 'Livewire\\Mechanisms\\FrontendAssets\\FrontendAssets@maps',
         'controller' => 'Livewire\\Mechanisms\\FrontendAssets\\FrontendAssets@maps',
-        'as' => 'generated::H47VfFao5N4oI1Cj',
+        'as' => 'generated::j2dUkQZFgobiiT5p',
       ),
       'fallback' => false,
       'defaults' => 
@@ -2360,7 +2576,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::AwRZkkjGatUB9Gmd' => 
+    'generated::eqvVl4JErVKFQom9' => 
     array (
       'methods' => 
       array (
@@ -2388,8 +2604,8 @@ app('router')->setCompiledRoutes(
                     return response(\\Illuminate\\Support\\Facades\\View::file(\'C:\\\\Users\\\\Trix\\\\Desktop\\\\authenticationOnly\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Foundation\\\\Configuration\'.\'/../resources/health-up.blade.php\', [
                         \'exception\' => $exception,
                     ]), status: $exception ? 500 : 200);
-                }";s:5:"scope";s:54:"Illuminate\\Foundation\\Configuration\\ApplicationBuilder";s:4:"this";N;s:4:"self";s:32:"0000000000000e760000000000000000";}}',
-        'as' => 'generated::AwRZkkjGatUB9Gmd',
+                }";s:5:"scope";s:54:"Illuminate\\Foundation\\Configuration\\ApplicationBuilder";s:4:"this";N;s:4:"self";s:32:"0000000000000e2f0000000000000000";}}',
+        'as' => 'generated::eqvVl4JErVKFQom9',
       ),
       'fallback' => false,
       'defaults' => 
@@ -2405,7 +2621,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::zzwfQvwU9syzh7t7' => 
+    'generated::WmQaB4ZXUe1MjI0F' => 
     array (
       'methods' => 
       array (
@@ -2421,13 +2637,13 @@ app('router')->setCompiledRoutes(
         ),
         'uses' => 'O:55:"Laravel\\SerializableClosure\\UnsignedSerializableClosure":1:{s:12:"serializable";O:46:"Laravel\\SerializableClosure\\Serializers\\Native":5:{s:3:"use";a:0:{}s:8:"function";s:44:"function () {
     return \\view(\'welcome\');
-}";s:5:"scope";s:37:"Illuminate\\Routing\\RouteFileRegistrar";s:4:"this";N;s:4:"self";s:32:"0000000000000e7a0000000000000000";}}',
+}";s:5:"scope";s:37:"Illuminate\\Routing\\RouteFileRegistrar";s:4:"this";N;s:4:"self";s:32:"0000000000000e330000000000000000";}}',
         'namespace' => NULL,
         'prefix' => '',
         'where' => 
         array (
         ),
-        'as' => 'generated::zzwfQvwU9syzh7t7',
+        'as' => 'generated::WmQaB4ZXUe1MjI0F',
       ),
       'fallback' => false,
       'defaults' => 
@@ -2459,7 +2675,7 @@ app('router')->setCompiledRoutes(
                         $config,
                         $isProduction
                     ))($request, $path);
-                }";s:5:"scope";s:47:"Illuminate\\Filesystem\\FilesystemServiceProvider";s:4:"this";N;s:4:"self";s:32:"0000000000000e7d0000000000000000";}}',
+                }";s:5:"scope";s:47:"Illuminate\\Filesystem\\FilesystemServiceProvider";s:4:"this";N;s:4:"self";s:32:"0000000000000e360000000000000000";}}',
         'as' => 'storage.local',
       ),
       'fallback' => false,

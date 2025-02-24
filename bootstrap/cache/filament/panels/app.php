@@ -4,6 +4,10 @@
     'app.filament.app.resources.course-resource.pages.create-course' => 'App\\Filament\\App\\Resources\\CourseResource\\Pages\\CreateCourse',
     'app.filament.app.resources.course-resource.pages.edit-course' => 'App\\Filament\\App\\Resources\\CourseResource\\Pages\\EditCourse',
     'app.filament.app.resources.course-resource.pages.list-courses' => 'App\\Filament\\App\\Resources\\CourseResource\\Pages\\ListCourses',
+    'app.filament.app.resources.quiz-resource.pages.create-quiz' => 'App\\Filament\\App\\Resources\\QuizResource\\Pages\\CreateQuiz',
+    'app.filament.app.resources.quiz-resource.pages.edit-quiz' => 'App\\Filament\\App\\Resources\\QuizResource\\Pages\\EditQuiz',
+    'app.filament.app.resources.quiz-resource.pages.list-quizzes' => 'App\\Filament\\App\\Resources\\QuizResource\\Pages\\ListQuizzes',
+    'app.filament.app.resources.quiz-resource.relation-managers.question-relation-manager' => 'App\\Filament\\App\\Resources\\QuizResource\\RelationManagers\\QuestionRelationManager',
     'app.filament.app.resources.room-resource.pages.create-room' => 'App\\Filament\\App\\Resources\\RoomResource\\Pages\\CreateRoom',
     'app.filament.app.resources.room-resource.pages.edit-room' => 'App\\Filament\\App\\Resources\\RoomResource\\Pages\\EditRoom',
     'app.filament.app.resources.room-resource.pages.list-rooms' => 'App\\Filament\\App\\Resources\\RoomResource\\Pages\\ListRooms',
@@ -59,6 +63,7 @@
   'resources' => 
   array (
     'C:\\Users\\Trix\\Desktop\\authenticationOnly\\app\\Filament\\App\\Resources\\CourseResource.php' => 'App\\Filament\\App\\Resources\\CourseResource',
+    'C:\\Users\\Trix\\Desktop\\authenticationOnly\\app\\Filament\\App\\Resources\\QuizResource.php' => 'App\\Filament\\App\\Resources\\QuizResource',
     'C:\\Users\\Trix\\Desktop\\authenticationOnly\\app\\Filament\\App\\Resources\\RoomResource.php' => 'App\\Filament\\App\\Resources\\RoomResource',
     'C:\\Users\\Trix\\Desktop\\authenticationOnly\\app\\Filament\\App\\Resources\\ScheduleResource.php' => 'App\\Filament\\App\\Resources\\ScheduleResource',
     'C:\\Users\\Trix\\Desktop\\authenticationOnly\\app\\Filament\\App\\Resources\\SubjectResource.php' => 'App\\Filament\\App\\Resources\\SubjectResource',

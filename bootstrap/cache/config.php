@@ -425,13 +425,6 @@
     array (
       'enabled' => true,
     ),
-    'professor' => 
-    array (
-      'enabled' => true,
-      'name' => 'professor',
-      'define_via_gate' => false,
-      'intercept_gate' => 'before',
-    ),
   ),
   'filesystems' => 
   array (
