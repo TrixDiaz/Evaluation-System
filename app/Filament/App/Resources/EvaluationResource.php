@@ -2,8 +2,8 @@
 
 namespace App\Filament\App\Resources;
 
-use App\Filament\App\Resources\QuizResource\Pages;
-use App\Filament\App\Resources\QuizResource\RelationManagers;
+use App\Filament\App\Resources\EvaluationResource\Pages;
+use App\Filament\App\Resources\EvaluationResource\RelationManagers;
 use App\Models\Quiz;
 use Filament\Forms;
 use Filament\Forms\Form;
@@ -13,10 +13,15 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-class QuizResource extends Resource
+class EvaluationResource extends Resource
 {
     protected static ?string $model = Quiz::class;
 
+protected static ?string $modelLabel = 'Evaluation';
+
+    protected static ?string $navigationLabel = 'Evaluation';
+
+    protected static ?string $navigationGroup = 'Evaluation';
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
     public static function form(Form $form): Form
@@ -29,11 +34,6 @@ class QuizResource extends Resource
 
                 Forms\Components\Textarea::make('description')
                     ->maxLength(65535),
-
-                Forms\Components\TextInput::make('time_limit')
-                    ->numeric()
-                    ->label('Time Limit (minutes)')
-                    ->nullable(),
 
                 Forms\Components\Toggle::make('is_published')
                     ->default(false),
@@ -76,9 +76,6 @@ class QuizResource extends Resource
             ->columns([
                 Tables\Columns\TextColumn::make('title')
                     ->searchable(),
-                Tables\Columns\TextColumn::make('time_limit')
-                    ->numeric()
-                    ->sortable(),
                 Tables\Columns\IconColumn::make('is_published')
                     ->boolean(),
                 Tables\Columns\TextColumn::make('created_at')
@@ -106,16 +103,16 @@ class QuizResource extends Resource
     public static function getRelations(): array
     {
         return [
-            RelationManagers\QuestionRelationManager::class,
+            EvaluationResource\RelationManagers\QuestionRelationManager::class,
         ];
     }
 
     public static function getPages(): array
     {
         return [
-            'index' => Pages\ListQuizzes::route('/'),
-            'create' => Pages\CreateQuiz::route('/create'),
-            'edit' => Pages\EditQuiz::route('/{record}/edit'),
+            'index' => Pages\ListEvaluations::route('/'),
+            'create' => Pages\CreateEvaluation::route('/create'),
+            'edit' => Pages\EditEvaluation::route('/{record}/edit'),
         ];
     }
 }

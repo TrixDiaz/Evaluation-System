@@ -206,13 +206,13 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      '/app/quizzes' => 
+      '/app/evaluations' => 
       array (
         0 => 
         array (
           0 => 
           array (
-            '_route' => 'filament.app.resources.quizzes.index',
+            '_route' => 'filament.app.resources.evaluations.index',
           ),
           1 => NULL,
           2 => 
@@ -226,13 +226,13 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      '/app/quizzes/create' => 
+      '/app/evaluations/create' => 
       array (
         0 => 
         array (
           0 => 
           array (
-            '_route' => 'filament.app.resources.quizzes.create',
+            '_route' => 'filament.app.resources.evaluations.create',
           ),
           1 => NULL,
           2 => 
@@ -471,7 +471,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::yWP4tfSyT6qZ3ASv',
+            '_route' => 'generated::WJG7HRuyfVrUByFy',
           ),
           1 => NULL,
           2 => 
@@ -491,7 +491,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::GgD3da9S5iadaDkL',
+            '_route' => 'generated::DZyCv89Qi45ooWbw',
           ),
           1 => NULL,
           2 => 
@@ -530,7 +530,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::sX76IlGMpjMstvPr',
+            '_route' => 'generated::Ig7Zq7D7yFhj08mb',
           ),
           1 => NULL,
           2 => 
@@ -550,7 +550,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::Tz817ctWOgKst0gT',
+            '_route' => 'generated::ptAuLlznPOV5shZG',
           ),
           1 => NULL,
           2 => 
@@ -567,7 +567,7 @@ app('router')->setCompiledRoutes(
     ),
     2 => 
     array (
-      0 => '{^(?|/filament/(?|exports/([^/]++)/download(*:45)|imports/([^/]++)/failed\\-rows/download(*:90))|/app/(?|courses/([^/]++)/edit(*:127)|quizzes/([^/]++)/edit(*:156)|rooms/([^/]++)/edit(*:183)|s(?|chedules/([^/]++)/edit(*:217)|ubjects/([^/]++)/edit(*:246)|hield/roles/([^/]++)(?|(*:277)|/edit(*:290)))|users/([^/]++)/edit(*:319))|/livewire/preview\\-file/([^/]++)(*:360)|/storage/(.*)(*:381))/?$}sDu',
+      0 => '{^(?|/filament/(?|exports/([^/]++)/download(*:45)|imports/([^/]++)/failed\\-rows/download(*:90))|/app/(?|courses/([^/]++)/edit(*:127)|evaluations/([^/]++)/edit(*:160)|rooms/([^/]++)/edit(*:187)|s(?|chedules/([^/]++)/edit(*:221)|ubjects/([^/]++)/edit(*:250)|hield/roles/([^/]++)(?|(*:281)|/edit(*:294)))|users/([^/]++)/edit(*:323))|/livewire/preview\\-file/([^/]++)(*:364)|/storage/(.*)(*:385))/?$}sDu',
     ),
     3 => 
     array (
@@ -640,13 +640,13 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      156 => 
+      160 => 
       array (
         0 => 
         array (
           0 => 
           array (
-            '_route' => 'filament.app.resources.quizzes.edit',
+            '_route' => 'filament.app.resources.evaluations.edit',
           ),
           1 => 
           array (
@@ -663,7 +663,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      183 => 
+      187 => 
       array (
         0 => 
         array (
@@ -686,7 +686,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      217 => 
+      221 => 
       array (
         0 => 
         array (
@@ -709,7 +709,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      246 => 
+      250 => 
       array (
         0 => 
         array (
@@ -732,7 +732,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      277 => 
+      281 => 
       array (
         0 => 
         array (
@@ -755,7 +755,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      290 => 
+      294 => 
       array (
         0 => 
         array (
@@ -778,7 +778,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      319 => 
+      323 => 
       array (
         0 => 
         array (
@@ -801,7 +801,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      360 => 
+      364 => 
       array (
         0 => 
         array (
@@ -824,7 +824,7 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      381 => 
+      385 => 
       array (
         0 => 
         array (
@@ -1465,14 +1465,14 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'filament.app.resources.quizzes.index' => 
+    'filament.app.resources.evaluations.index' => 
     array (
       'methods' => 
       array (
         0 => 'GET',
         1 => 'HEAD',
       ),
-      'uri' => 'app/quizzes',
+      'uri' => 'app/evaluations',
       'action' => 
       array (
         'domain' => NULL,
@@ -1493,11 +1493,11 @@ app('router')->setCompiledRoutes(
         'excluded_middleware' => 
         array (
         ),
-        'uses' => 'App\\Filament\\App\\Resources\\QuizResource\\Pages\\ListQuizzes@__invoke',
-        'controller' => 'App\\Filament\\App\\Resources\\QuizResource\\Pages\\ListQuizzes',
-        'as' => 'filament.app.resources.quizzes.index',
+        'uses' => 'App\\Filament\\App\\Resources\\EvaluationResource\\Pages\\ListEvaluations@__invoke',
+        'controller' => 'App\\Filament\\App\\Resources\\EvaluationResource\\Pages\\ListEvaluations',
+        'as' => 'filament.app.resources.evaluations.index',
         'namespace' => NULL,
-        'prefix' => 'app/quizzes',
+        'prefix' => 'app/evaluations',
         'where' => 
         array (
         ),
@@ -1516,14 +1516,14 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'filament.app.resources.quizzes.create' => 
+    'filament.app.resources.evaluations.create' => 
     array (
       'methods' => 
       array (
         0 => 'GET',
         1 => 'HEAD',
       ),
-      'uri' => 'app/quizzes/create',
+      'uri' => 'app/evaluations/create',
       'action' => 
       array (
         'domain' => NULL,
@@ -1544,11 +1544,11 @@ app('router')->setCompiledRoutes(
         'excluded_middleware' => 
         array (
         ),
-        'uses' => 'App\\Filament\\App\\Resources\\QuizResource\\Pages\\CreateQuiz@__invoke',
-        'controller' => 'App\\Filament\\App\\Resources\\QuizResource\\Pages\\CreateQuiz',
-        'as' => 'filament.app.resources.quizzes.create',
+        'uses' => 'App\\Filament\\App\\Resources\\EvaluationResource\\Pages\\CreateEvaluation@__invoke',
+        'controller' => 'App\\Filament\\App\\Resources\\EvaluationResource\\Pages\\CreateEvaluation',
+        'as' => 'filament.app.resources.evaluations.create',
         'namespace' => NULL,
-        'prefix' => 'app/quizzes',
+        'prefix' => 'app/evaluations',
         'where' => 
         array (
         ),
@@ -1567,14 +1567,14 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'filament.app.resources.quizzes.edit' => 
+    'filament.app.resources.evaluations.edit' => 
     array (
       'methods' => 
       array (
         0 => 'GET',
         1 => 'HEAD',
       ),
-      'uri' => 'app/quizzes/{record}/edit',
+      'uri' => 'app/evaluations/{record}/edit',
       'action' => 
       array (
         'domain' => NULL,
@@ -1595,11 +1595,11 @@ app('router')->setCompiledRoutes(
         'excluded_middleware' => 
         array (
         ),
-        'uses' => 'App\\Filament\\App\\Resources\\QuizResource\\Pages\\EditQuiz@__invoke',
-        'controller' => 'App\\Filament\\App\\Resources\\QuizResource\\Pages\\EditQuiz',
-        'as' => 'filament.app.resources.quizzes.edit',
+        'uses' => 'App\\Filament\\App\\Resources\\EvaluationResource\\Pages\\EditEvaluation@__invoke',
+        'controller' => 'App\\Filament\\App\\Resources\\EvaluationResource\\Pages\\EditEvaluation',
+        'as' => 'filament.app.resources.evaluations.edit',
         'namespace' => NULL,
-        'prefix' => 'app/quizzes',
+        'prefix' => 'app/evaluations',
         'where' => 
         array (
         ),
@@ -2465,7 +2465,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::yWP4tfSyT6qZ3ASv' => 
+    'generated::WJG7HRuyfVrUByFy' => 
     array (
       'methods' => 
       array (
@@ -2477,7 +2477,7 @@ app('router')->setCompiledRoutes(
       array (
         'uses' => 'Livewire\\Mechanisms\\FrontendAssets\\FrontendAssets@returnJavaScriptAsFile',
         'controller' => 'Livewire\\Mechanisms\\FrontendAssets\\FrontendAssets@returnJavaScriptAsFile',
-        'as' => 'generated::yWP4tfSyT6qZ3ASv',
+        'as' => 'generated::WJG7HRuyfVrUByFy',
       ),
       'fallback' => false,
       'defaults' => 
@@ -2493,7 +2493,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::GgD3da9S5iadaDkL' => 
+    'generated::DZyCv89Qi45ooWbw' => 
     array (
       'methods' => 
       array (
@@ -2505,7 +2505,7 @@ app('router')->setCompiledRoutes(
       array (
         'uses' => 'Livewire\\Mechanisms\\FrontendAssets\\FrontendAssets@maps',
         'controller' => 'Livewire\\Mechanisms\\FrontendAssets\\FrontendAssets@maps',
-        'as' => 'generated::GgD3da9S5iadaDkL',
+        'as' => 'generated::DZyCv89Qi45ooWbw',
       ),
       'fallback' => false,
       'defaults' => 
@@ -2576,7 +2576,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::sX76IlGMpjMstvPr' => 
+    'generated::Ig7Zq7D7yFhj08mb' => 
     array (
       'methods' => 
       array (
@@ -2605,7 +2605,7 @@ app('router')->setCompiledRoutes(
                         \'exception\' => $exception,
                     ]), status: $exception ? 500 : 200);
                 }";s:5:"scope";s:54:"Illuminate\\Foundation\\Configuration\\ApplicationBuilder";s:4:"this";N;s:4:"self";s:32:"0000000000000e2f0000000000000000";}}',
-        'as' => 'generated::sX76IlGMpjMstvPr',
+        'as' => 'generated::Ig7Zq7D7yFhj08mb',
       ),
       'fallback' => false,
       'defaults' => 
@@ -2621,7 +2621,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::Tz817ctWOgKst0gT' => 
+    'generated::ptAuLlznPOV5shZG' => 
     array (
       'methods' => 
       array (
@@ -2643,7 +2643,7 @@ app('router')->setCompiledRoutes(
         'where' => 
         array (
         ),
-        'as' => 'generated::Tz817ctWOgKst0gT',
+        'as' => 'generated::ptAuLlznPOV5shZG',
       ),
       'fallback' => false,
       'defaults' => 

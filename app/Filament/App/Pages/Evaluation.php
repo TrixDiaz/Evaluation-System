@@ -11,4 +11,6 @@ class Evaluation extends Page
     protected static string $view = 'filament.app.pages.evaluation';
 
     protected static ?string $navigationGroup = 'Evaluation';
+
+    protected static ?string $navigationLabel = 'Evaluation Result';
 }
