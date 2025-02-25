@@ -17,9 +17,7 @@ return new class extends Migration
             $table->string('question_type'); // text, multiple_choice, rating
             $table->json('question_content');
             $table->json('answer_content')->nullable();
-            $table->string('correct_answer')->nullable(); // For text questions
             $table->integer('rating_correct_answer')->nullable(); // For rating questions
-            $table->integer('points')->default(1);
             $table->integer('order')->default(0);
             $table->timestamps();
         });

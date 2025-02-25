@@ -16,7 +16,6 @@ return new class extends Migration
             $table->foreignId('question_id')->constrained()->onDelete('cascade');
             $table->text('answer_text');
             $table->json('answer_content')->nullable(); // Para sa Builder answer blocks
-            $table->boolean('is_correct');
             $table->integer('order')->default(0);
             $table->timestamps();
         });

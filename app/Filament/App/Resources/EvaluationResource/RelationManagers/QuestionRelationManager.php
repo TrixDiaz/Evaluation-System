@@ -31,10 +31,10 @@ class QuestionRelationManager extends RelationManager
                             ->schema([
                                 Forms\Components\RichEditor::make('question_text')
                                     ->required(),
-                                Forms\Components\TextInput::make('points')
-                                    ->numeric()
-                                    ->default(1)
-                                    ->required(),
+                                // Forms\Components\TextInput::make('points')
+                                //     ->numeric()
+                                //     ->default(1)
+                                //     ->required(),
                             ]),
                         Forms\Components\Builder\Block::make('image_question')
                             ->schema([
@@ -43,15 +43,15 @@ class QuestionRelationManager extends RelationManager
                                     ->directory('question-images'),
                                 Forms\Components\RichEditor::make('question_text')
                                     ->required(),
-                                Forms\Components\TextInput::make('points')
-                                    ->numeric()
-                                    ->default(1)
-                                    ->required(),
+                                // Forms\Components\TextInput::make('points')
+                                //     ->numeric()
+                                //     ->default(1)
+                                //     ->required(),
                             ]),
                     ]),
 
                 Forms\Components\Builder::make('answer_content')
-                    ->visible(fn (Forms\Get $get): bool => $get('question_type') === 'multiple_choice')
+                    ->visible(fn(Forms\Get $get): bool => $get('question_type') === 'multiple_choice')
                     ->blocks([
                         Forms\Components\Builder\Block::make('multiple_choice')
                             ->schema([
@@ -68,12 +68,12 @@ class QuestionRelationManager extends RelationManager
                             ]),
                     ]),
 
-                Forms\Components\TextInput::make('correct_answer')
-                    ->visible(fn (Forms\Get $get): bool => $get('question_type') === 'text')
-                    ->required(fn (Forms\Get $get): bool => $get('question_type') === 'text'),
+                // Forms\Components\TextInput::make('correct_answer')
+                //     ->visible(fn (Forms\Get $get): bool => $get('question_type') === 'text')
+                //     ->required(fn (Forms\Get $get): bool => $get('question_type') === 'text'),
 
                 Forms\Components\Radio::make('rating_correct_answer')
-                    ->visible(fn (Forms\Get $get): bool => $get('question_type') === 'rating')
+                    ->visible(fn(Forms\Get $get): bool => $get('question_type') === 'rating')
                     ->options([
                         1 => '1 - Very Poor',
                         2 => '2 - Poor',
@@ -81,7 +81,7 @@ class QuestionRelationManager extends RelationManager
                         4 => '4 - Good',
                         5 => '5 - Excellent',
                     ])
-                    ->required(fn (Forms\Get $get): bool => $get('question_type') === 'rating'),
+                    ->required(fn(Forms\Get $get): bool => $get('question_type') === 'rating'),
             ]);
     }
 
@@ -91,7 +91,7 @@ class QuestionRelationManager extends RelationManager
             ->recordTitleAttribute('questions')
             ->columns([
                 Tables\Columns\TextColumn::make('question_type'),
-                Tables\Columns\TextColumn::make('points'),
+                // Tables\Columns\TextColumn::make('points'),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime(),
             ])

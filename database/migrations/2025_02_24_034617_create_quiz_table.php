@@ -17,7 +17,7 @@ return new class extends Migration
             $table->text('description')->nullable();
             $table->json('header_content')->nullable();
             $table->json('footer_content')->nullable();
-            $table->integer('time_limit')->nullable();
+
             $table->boolean('is_published')->default(false);
             $table->timestamps();
         });

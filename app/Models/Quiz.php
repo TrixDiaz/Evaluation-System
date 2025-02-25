@@ -8,7 +8,6 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Quiz extends Model
 {
-    /** @use HasFactory<\Database\Factories\QuizFactory> */
     use HasFactory;
 
     protected $fillable = [
@@ -28,11 +27,16 @@ class Quiz extends Model
 
     public function questions(): HasMany
     {
-        return $this->hasMany(Question::class, 'quiz_id');
+        return $this->hasMany(Question::class)->orderBy('order');
     }
 
     public function attempts(): HasMany
     {
         return $this->hasMany(QuizAttempt::class);
+    }
+
+    public function completions(): HasMany
+    {
+        return $this->hasMany(QuizCompletion::class);
     }
 }

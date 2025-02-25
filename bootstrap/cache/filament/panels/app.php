@@ -22,6 +22,7 @@
     'app.filament.app.resources.user-resource.pages.list-users' => 'App\\Filament\\App\\Resources\\UserResource\\Pages\\ListUsers',
     'app.filament.app.pages.dashboard' => 'App\\Filament\\App\\Pages\\Dashboard',
     'app.filament.app.pages.evaluation' => 'App\\Filament\\App\\Pages\\Evaluation',
+    'app.filament.app.pages.take-quiz' => 'App\\Filament\\App\\Pages\\TakeQuiz',
     'filament.livewire.database-notifications' => 'Filament\\Livewire\\DatabaseNotifications',
     'filament.pages.auth.edit-profile' => 'Filament\\Pages\\Auth\\EditProfile',
     'filament.livewire.global-search' => 'Filament\\Livewire\\GlobalSearch',
@@ -51,6 +52,7 @@
   array (
     'C:\\Users\\Trix\\Desktop\\authenticationOnly\\app\\Filament\\App\\Pages\\Dashboard.php' => 'App\\Filament\\App\\Pages\\Dashboard',
     'C:\\Users\\Trix\\Desktop\\authenticationOnly\\app\\Filament\\App\\Pages\\Evaluation.php' => 'App\\Filament\\App\\Pages\\Evaluation',
+    'C:\\Users\\Trix\\Desktop\\authenticationOnly\\app\\Filament\\App\\Pages\\TakeQuiz.php' => 'App\\Filament\\App\\Pages\\TakeQuiz',
   ),
   'pageDirectories' => 
   array (

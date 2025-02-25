@@ -135,7 +135,7 @@ class Evaluation extends Component implements HasForms, HasTable
                 \Filament\Tables\Actions\Action::make('copus1')
                     ->label('Copus')
                     ->button()
-                    ->color(fn ($record) => \App\Models\Evaluation::where('schedule_id', $record->id)
+                    ->color(fn($record) => \App\Models\Evaluation::where('schedule_id', $record->id)
                         ->where('dean_id', auth()->user()->id)
                         ->exists() ? 'gray' : 'primary') // Gray when disabled, primary otherwise
                     ->disabled(function ($record) {
@@ -150,10 +150,10 @@ class Evaluation extends Component implements HasForms, HasTable
 
                         return $evaluated ? 'This schedule has already been evaluated' : 'Create COPUS evaluation';
                     })
-                    ->form(fn ($record) => \App\Services\Evaluation::schema($record))
+                    ->form(fn($record) => \App\Services\Evaluation::schema($record))
                     ->modalWidth('7xl')
                     ->action(function (array $data, $record) {
-                      $success = \App\Models\Evaluation::create([
+                        $success = \App\Models\Evaluation::create([
                             'dean_id' => auth()->user()->id,
                             'schedule_id' => $record->id,
                             'observation_date' => now(),

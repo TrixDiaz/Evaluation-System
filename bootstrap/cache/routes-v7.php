@@ -166,6 +166,26 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
+      '/app/take-quiz' => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'filament.app.pages.take-quiz',
+          ),
+          1 => NULL,
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+      ),
       '/app/courses' => 
       array (
         0 => 
@@ -471,7 +491,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::WJG7HRuyfVrUByFy',
+            '_route' => 'generated::7ZkiN56rZOIw9D9k',
           ),
           1 => NULL,
           2 => 
@@ -491,7 +511,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::DZyCv89Qi45ooWbw',
+            '_route' => 'generated::0kICkiTCpKNj4Cy6',
           ),
           1 => NULL,
           2 => 
@@ -530,7 +550,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::Ig7Zq7D7yFhj08mb',
+            '_route' => 'generated::lu5gEuycuJHJQPIh',
           ),
           1 => NULL,
           2 => 
@@ -550,7 +570,7 @@ app('router')->setCompiledRoutes(
         array (
           0 => 
           array (
-            '_route' => 'generated::ptAuLlznPOV5shZG',
+            '_route' => 'generated::KiUpkiXaWODk3URz',
           ),
           1 => NULL,
           2 => 
@@ -567,7 +587,7 @@ app('router')->setCompiledRoutes(
     ),
     2 => 
     array (
-      0 => '{^(?|/filament/(?|exports/([^/]++)/download(*:45)|imports/([^/]++)/failed\\-rows/download(*:90))|/app/(?|courses/([^/]++)/edit(*:127)|evaluations/([^/]++)/edit(*:160)|rooms/([^/]++)/edit(*:187)|s(?|chedules/([^/]++)/edit(*:221)|ubjects/([^/]++)/edit(*:250)|hield/roles/([^/]++)(?|(*:281)|/edit(*:294)))|users/([^/]++)/edit(*:323))|/livewire/preview\\-file/([^/]++)(*:364)|/storage/(.*)(*:385))/?$}sDu',
+      0 => '{^(?|/filament/(?|exports/([^/]++)/download(*:45)|imports/([^/]++)/failed\\-rows/download(*:90))|/app/(?|courses/([^/]++)/edit(*:127)|evaluations/([^/]++)/edit(*:160)|rooms/([^/]++)/edit(*:187)|s(?|chedules/([^/]++)/edit(*:221)|ubjects/([^/]++)/edit(*:250)|hield/roles/([^/]++)(?|(*:281)|/edit(*:294)))|users/([^/]++)/edit(*:323))|/livewire/preview\\-file/([^/]++)(*:364)|/quiz(?|zes/([^/]++)(?|(*:395)|/submit(*:410))|\\-results/([^/]++)(*:437))|/storage/(.*)(*:459))/?$}sDu',
     ),
     3 => 
     array (
@@ -824,7 +844,75 @@ app('router')->setCompiledRoutes(
           6 => NULL,
         ),
       ),
-      385 => 
+      395 => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'quiz.show',
+          ),
+          1 => 
+          array (
+            0 => 'quiz',
+          ),
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => true,
+          6 => NULL,
+        ),
+      ),
+      410 => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'quiz.submit',
+          ),
+          1 => 
+          array (
+            0 => 'quiz',
+          ),
+          2 => 
+          array (
+            'POST' => 0,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => false,
+          6 => NULL,
+        ),
+      ),
+      437 => 
+      array (
+        0 => 
+        array (
+          0 => 
+          array (
+            '_route' => 'quiz.results',
+          ),
+          1 => 
+          array (
+            0 => 'attempt',
+          ),
+          2 => 
+          array (
+            'GET' => 0,
+            'HEAD' => 1,
+          ),
+          3 => NULL,
+          4 => false,
+          5 => true,
+          6 => NULL,
+        ),
+      ),
+      459 => 
       array (
         0 => 
         array (
@@ -1289,6 +1377,57 @@ app('router')->setCompiledRoutes(
         'uses' => 'App\\Filament\\App\\Pages\\Evaluation@__invoke',
         'controller' => 'App\\Filament\\App\\Pages\\Evaluation',
         'as' => 'filament.app.pages.evaluation',
+        'namespace' => NULL,
+        'prefix' => 'app/',
+        'where' => 
+        array (
+        ),
+        'excluded_middleware' => 
+        array (
+        ),
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'filament.app.pages.take-quiz' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'app/take-quiz',
+      'action' => 
+      array (
+        'domain' => NULL,
+        'middleware' => 
+        array (
+          0 => 'panel:app',
+          1 => 'Illuminate\\Cookie\\Middleware\\EncryptCookies',
+          2 => 'Illuminate\\Cookie\\Middleware\\AddQueuedCookiesToResponse',
+          3 => 'Illuminate\\Session\\Middleware\\StartSession',
+          4 => 'Illuminate\\Session\\Middleware\\AuthenticateSession',
+          5 => 'Illuminate\\View\\Middleware\\ShareErrorsFromSession',
+          6 => 'Illuminate\\Foundation\\Http\\Middleware\\VerifyCsrfToken',
+          7 => 'Illuminate\\Routing\\Middleware\\SubstituteBindings',
+          8 => 'Filament\\Http\\Middleware\\DisableBladeIconComponents',
+          9 => 'Filament\\Http\\Middleware\\DispatchServingFilamentEvent',
+          10 => 'Filament\\Http\\Middleware\\Authenticate',
+        ),
+        'uses' => 'App\\Filament\\App\\Pages\\TakeQuiz@__invoke',
+        'controller' => 'App\\Filament\\App\\Pages\\TakeQuiz',
+        'as' => 'filament.app.pages.take-quiz',
         'namespace' => NULL,
         'prefix' => 'app/',
         'where' => 
@@ -2465,7 +2604,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::WJG7HRuyfVrUByFy' => 
+    'generated::7ZkiN56rZOIw9D9k' => 
     array (
       'methods' => 
       array (
@@ -2477,7 +2616,7 @@ app('router')->setCompiledRoutes(
       array (
         'uses' => 'Livewire\\Mechanisms\\FrontendAssets\\FrontendAssets@returnJavaScriptAsFile',
         'controller' => 'Livewire\\Mechanisms\\FrontendAssets\\FrontendAssets@returnJavaScriptAsFile',
-        'as' => 'generated::WJG7HRuyfVrUByFy',
+        'as' => 'generated::7ZkiN56rZOIw9D9k',
       ),
       'fallback' => false,
       'defaults' => 
@@ -2493,7 +2632,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::DZyCv89Qi45ooWbw' => 
+    'generated::0kICkiTCpKNj4Cy6' => 
     array (
       'methods' => 
       array (
@@ -2505,7 +2644,7 @@ app('router')->setCompiledRoutes(
       array (
         'uses' => 'Livewire\\Mechanisms\\FrontendAssets\\FrontendAssets@maps',
         'controller' => 'Livewire\\Mechanisms\\FrontendAssets\\FrontendAssets@maps',
-        'as' => 'generated::DZyCv89Qi45ooWbw',
+        'as' => 'generated::0kICkiTCpKNj4Cy6',
       ),
       'fallback' => false,
       'defaults' => 
@@ -2576,7 +2715,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::Ig7Zq7D7yFhj08mb' => 
+    'generated::lu5gEuycuJHJQPIh' => 
     array (
       'methods' => 
       array (
@@ -2604,8 +2743,8 @@ app('router')->setCompiledRoutes(
                     return response(\\Illuminate\\Support\\Facades\\View::file(\'C:\\\\Users\\\\Trix\\\\Desktop\\\\authenticationOnly\\\\vendor\\\\laravel\\\\framework\\\\src\\\\Illuminate\\\\Foundation\\\\Configuration\'.\'/../resources/health-up.blade.php\', [
                         \'exception\' => $exception,
                     ]), status: $exception ? 500 : 200);
-                }";s:5:"scope";s:54:"Illuminate\\Foundation\\Configuration\\ApplicationBuilder";s:4:"this";N;s:4:"self";s:32:"0000000000000e2f0000000000000000";}}',
-        'as' => 'generated::Ig7Zq7D7yFhj08mb',
+                }";s:5:"scope";s:54:"Illuminate\\Foundation\\Configuration\\ApplicationBuilder";s:4:"this";N;s:4:"self";s:32:"0000000000000e310000000000000000";}}',
+        'as' => 'generated::lu5gEuycuJHJQPIh',
       ),
       'fallback' => false,
       'defaults' => 
@@ -2621,7 +2760,7 @@ app('router')->setCompiledRoutes(
       'waitSeconds' => NULL,
       'withTrashed' => false,
     ),
-    'generated::ptAuLlznPOV5shZG' => 
+    'generated::KiUpkiXaWODk3URz' => 
     array (
       'methods' => 
       array (
@@ -2637,13 +2776,123 @@ app('router')->setCompiledRoutes(
         ),
         'uses' => 'O:55:"Laravel\\SerializableClosure\\UnsignedSerializableClosure":1:{s:12:"serializable";O:46:"Laravel\\SerializableClosure\\Serializers\\Native":5:{s:3:"use";a:0:{}s:8:"function";s:44:"function () {
     return \\view(\'welcome\');
-}";s:5:"scope";s:37:"Illuminate\\Routing\\RouteFileRegistrar";s:4:"this";N;s:4:"self";s:32:"0000000000000e330000000000000000";}}',
+}";s:5:"scope";s:37:"Illuminate\\Routing\\RouteFileRegistrar";s:4:"this";N;s:4:"self";s:32:"0000000000000e350000000000000000";}}',
         'namespace' => NULL,
         'prefix' => '',
         'where' => 
         array (
         ),
-        'as' => 'generated::ptAuLlznPOV5shZG',
+        'as' => 'generated::KiUpkiXaWODk3URz',
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'quiz.show' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'quizzes/{quiz}',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+        ),
+        'uses' => 'App\\Http\\Controllers\\QuizController@show',
+        'controller' => 'App\\Http\\Controllers\\QuizController@show',
+        'namespace' => NULL,
+        'prefix' => '/quizzes',
+        'where' => 
+        array (
+        ),
+        'as' => 'quiz.show',
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'quiz.submit' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'POST',
+      ),
+      'uri' => 'quizzes/{quiz}/submit',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+        ),
+        'uses' => 'App\\Http\\Controllers\\QuizController@submit',
+        'controller' => 'App\\Http\\Controllers\\QuizController@submit',
+        'namespace' => NULL,
+        'prefix' => '/quizzes',
+        'where' => 
+        array (
+        ),
+        'as' => 'quiz.submit',
+      ),
+      'fallback' => false,
+      'defaults' => 
+      array (
+      ),
+      'wheres' => 
+      array (
+      ),
+      'bindingFields' => 
+      array (
+      ),
+      'lockSeconds' => NULL,
+      'waitSeconds' => NULL,
+      'withTrashed' => false,
+    ),
+    'quiz.results' => 
+    array (
+      'methods' => 
+      array (
+        0 => 'GET',
+        1 => 'HEAD',
+      ),
+      'uri' => 'quiz-results/{attempt}',
+      'action' => 
+      array (
+        'middleware' => 
+        array (
+          0 => 'web',
+        ),
+        'uses' => 'App\\Http\\Controllers\\QuizController@results',
+        'controller' => 'App\\Http\\Controllers\\QuizController@results',
+        'namespace' => NULL,
+        'prefix' => '',
+        'where' => 
+        array (
+        ),
+        'as' => 'quiz.results',
       ),
       'fallback' => false,
       'defaults' => 
@@ -2675,7 +2924,7 @@ app('router')->setCompiledRoutes(
                         $config,
                         $isProduction
                     ))($request, $path);
-                }";s:5:"scope";s:47:"Illuminate\\Filesystem\\FilesystemServiceProvider";s:4:"this";N;s:4:"self";s:32:"0000000000000e360000000000000000";}}',
+                }";s:5:"scope";s:47:"Illuminate\\Filesystem\\FilesystemServiceProvider";s:4:"this";N;s:4:"self";s:32:"0000000000000e3b0000000000000000";}}',
         'as' => 'storage.local',
       ),
       'fallback' => false,
