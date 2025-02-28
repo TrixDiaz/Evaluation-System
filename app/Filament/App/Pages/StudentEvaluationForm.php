@@ -1,28 +1,40 @@
 <?php
 
-namespace App\Livewire;
+namespace App\Filament\App\Pages;
 
-use Livewire\Component;
 use App\Models\StudentEvaluation as StudentEvaluationModel;
 use App\Models\StudentEvaluationResponse;
+use Filament\Pages\Page;
 use Filament\Notifications\Notification;
+use Illuminate\Database\Eloquent\Model;
 
-class StudentEvaluation extends Component
+class StudentEvaluationForm extends Page
 {
-    public StudentEvaluationModel $evaluation;
+    protected static ?string $navigationIcon = 'heroicon-o-clipboard-document-list';
+    protected static string $view = 'filament.app.pages.student-evaluation-form';
+    protected static ?string $navigationGroup = 'Evaluation';
+    protected static bool $shouldRegisterNavigation = false;
+
+    public ?StudentEvaluationModel $evaluation = null;
     public $answers = [];
     public $agreed = false;
     public $currentStep = 1;
     public $schedule = '';
     public $year = '';
 
-    public function mount(StudentEvaluationModel $evaluation)
+    public static function getUrl(array $parameters = [], bool $isAbsolute = true, ?string $panel = null, ?Model $tenant = null): string
     {
-        $this->evaluation = $evaluation;
+        return route('filament.app.pages.student-evaluation-form', ['evaluation' => $parameters['evaluation']], $isAbsolute);
+    }
 
-        // Check if user has already submitted this evaluation
+    public function mount(): void
+    {
+        $evaluationId = request()->query('evaluation');
+        $this->evaluation = StudentEvaluationModel::with('questions')->findOrFail($evaluationId);
+
+        // Check if user has already submitted
         $hasSubmitted = StudentEvaluationResponse::where([
-            'student_evaluation_id' => $evaluation->id,
+            'student_evaluation_id' => $this->evaluation->id,
             'user_id' => auth()->id(),
         ])->exists();
 
@@ -32,8 +44,7 @@ class StudentEvaluation extends Component
                 ->warning()
                 ->send();
 
-            $this->currentStep = 0; // Show "already submitted" state
-            return;
+            $this->redirect(StudentEvaluation::getUrl());
         }
     }
 
@@ -55,11 +66,18 @@ class StudentEvaluation extends Component
         $this->currentStep++;
     }
 
+    public function previousStep()
+    {
+        $this->currentStep--;
+    }
+
     public function submit()
     {
         $this->validate([
             'schedule' => 'required',
             'year' => 'required',
+            'answers' => 'required|array',
+            'answers.*' => 'required'
         ]);
 
         foreach ($this->answers as $questionId => $answer) {
@@ -73,20 +91,11 @@ class StudentEvaluation extends Component
             ]);
         }
 
-        $this->reset('answers');
-        $this->dispatch('evaluation-submitted');
-
         Notification::make()
             ->title('Evaluation submitted successfully')
             ->success()
             ->send();
-    }
 
-    public function render()
-    {
-        return view('livewire.student-evaluation', [
-            'evaluation' => $this->evaluation,
-            'schedules' => \App\Models\Schedule::all()
-        ]);
+        return redirect()->to(StudentEvaluation::getUrl());
     }
 }

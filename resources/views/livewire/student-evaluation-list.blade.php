@@ -1,5 +1,7 @@
-<x-filament-panels::page>
-    <div class="space-y-4">
+<div class="p-6">
+    <h2 class="text-2xl font-bold mb-6">Available Evaluations</h2>
+
+    <div class="grid gap-4">
         @foreach ($evaluations as $evaluation)
             <div class="bg-white p-4 rounded-lg shadow">
                 <div class="flex justify-between items-center">
@@ -7,15 +9,10 @@
                         <h3 class="text-lg font-semibold">{{ $evaluation->title }}</h3>
                         <p class="text-gray-600">{{ $evaluation->description }}</p>
                     </div>
-                    @if ($this->hasSubmitted($evaluation->id))
-                        <x-filament::button disabled class="opacity-50 cursor-not-allowed">
-                            Already Submitted
-                        </x-filament::button>
-                    @else
-                        <x-filament::button wire:click="startEvaluation({{ $evaluation->id }})">
-                            Start Evaluation
-                        </x-filament::button>
-                    @endif
+                    <a href="{{ route('student.evaluation', $evaluation) }}"
+                        class="px-4 py-2 bg-primary-600 text-white rounded-lg hover:bg-primary-700">
+                        Start Evaluation
+                    </a>
                 </div>
             </div>
         @endforeach
@@ -26,4 +23,4 @@
             </div>
         @endif
     </div>
-</x-filament-panels::page>
+</div>
