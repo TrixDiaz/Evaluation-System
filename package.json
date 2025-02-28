@@ -2,6 +2,8 @@
     "private": true,
     "type": "module",
     "scripts": {
+        "production": "npm run build",
+        "start": "mix --production",
         "build": "vite build",
         "dev": "vite"
     },
