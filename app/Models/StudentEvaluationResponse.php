@@ -23,7 +23,7 @@ class StudentEvaluationResponse extends Model
 
     public function question(): BelongsTo
     {
-        return $this->belongsTo(StudentEvaluationQuestion::class, 'student_evaluation_question_id');
+        return $this->belongsTo(StudentEvaluationQuestion::class, 'student_eval_question_id');
     }
 
     public function user(): BelongsTo
