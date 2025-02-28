@@ -11,14 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('quizzes', function (Blueprint $table) {
+        Schema::create('student_evaluation_questions', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-            $table->text('description')->nullable();
-            $table->json('header_content')->nullable();
-            $table->json('footer_content')->nullable();
-
-            $table->boolean('is_published')->default(false);
+            $table->foreignId('student_evaluation_id')->constrained('student_evaluations')->cascadeOnDelete();
+            $table->text('question');
+            $table->enum('type', ['text', 'multiple_choice', 'rating']);
+            $table->json('options')->nullable();
             $table->timestamps();
         });
     }
@@ -28,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('quizzes');
+        Schema::dropIfExists('student_evaluation_questions');
     }
 };

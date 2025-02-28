@@ -11,12 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('answers', function (Blueprint $table) {
+        Schema::create('student_evaluations', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('question_id')->constrained()->onDelete('cascade');
-            $table->text('answer_text');
-            $table->json('answer_content')->nullable(); // Para sa Builder answer blocks
-            $table->integer('order')->default(0);
+            $table->string('title');
+            $table->text('description')->nullable();
             $table->timestamps();
         });
     }
@@ -26,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('answers');
+        Schema::dropIfExists('student_evaluations');
     }
 };

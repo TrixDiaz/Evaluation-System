@@ -6,7 +6,8 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Filament\Widgets\TableWidget as BaseWidget;
 
-class StudentActivityResult extends BaseWidget
+class
+StudentActivityResult extends BaseWidget
 {
     public function table(Table $table): Table
     {

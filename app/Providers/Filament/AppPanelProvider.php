@@ -42,13 +42,6 @@ class AppPanelProvider extends PanelProvider
                 'Resource Group',
                 'System Settings'
             ])
-            ->navigationItems([
-//                NavigationItem::make('Analytics')
-//                    ->url('https://filament.pirsch.io', shouldOpenInNewTab: true)
-//                    ->icon('heroicon-o-presentation-chart-line')
-//                    ->group('Evaluation')
-//                    ->sort(3),
-            ])
             ->discoverResources(in: app_path('Filament/App/Resources'), for: 'App\\Filament\\App\\Resources')
             ->discoverPages(in: app_path('Filament/App/Pages'), for: 'App\\Filament\\App\\Pages')
             ->discoverWidgets(in: app_path('Filament/App/Widgets'), for: 'App\\Filament\\App\\Widgets')
