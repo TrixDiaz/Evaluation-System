@@ -15,6 +15,8 @@ return new class extends Migration
             $table->id();
             $table->foreignId('student_evaluation_id')->constrained('student_evaluations')->cascadeOnDelete();
             $table->foreignId('student_evaluation_question_id')->constrained('student_evaluation_questions')->cascadeOnDelete();
+            $table->foreignId('schedule_id')->constrained('schedules')->cascadeOnDelete();
+            $table->string('year');
             $table->foreignId('user_id')->constrained('users')->cascadeOnDelete();
             $table->text('answer');
             $table->timestamps();

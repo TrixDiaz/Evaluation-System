@@ -11,6 +11,8 @@ class StudentEvaluationResponse extends Model
         'student_evaluation_id',
         'student_evaluation_question_id',
         'user_id',
+        'schedule_id',
+        'year',
         'answer'
     ];
 
