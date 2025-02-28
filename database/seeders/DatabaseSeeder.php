@@ -15,11 +15,12 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         // Create Fake Data
-        $this->call(ScheduleSeeder::class);
+//        $this->call(ScheduleSeeder::class);
 
         User::factory()->create([
             'name' => 'Test User',
             'email' => 'test@example.com',
+            'password' => bcrypt('password')
         ]);
     }
 }
