@@ -1,3 +1,6 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 @import "tailwindcss";
 
 @source "../views";
@@ -6,7 +9,6 @@
     --background: #ffffff;
     --foreground: #171717;
 }
-
 
 @media (prefers-color-scheme: dark) {
     :root {
@@ -23,8 +25,8 @@ body {
 
 @theme {
     /* Fonts */
-    --font-title: 'Poppins', sans-serif;
-    --font-paragraph: 'Inter', sans-serif;
+    --font-title: "Poppins", sans-serif;
+    --font-paragraph: "Inter", sans-serif;
 
     /* Light Themes */
     --color-surface: var(--color-amber-50);
@@ -65,11 +67,10 @@ body {
 }
 
 @layer base {
-
-    [data-theme=pastel] {
+    [data-theme="pastel"] {
         /* Fonts */
-        --font-body: 'Playpen Sans', cursive;
-        --font-title: 'Playpen Sans', cursive;
+        --font-body: "Playpen Sans", cursive;
+        --font-title: "Playpen Sans", cursive;
 
         /* Light Theme */
         --color-surface: var(--color-amber-50);
@@ -108,9 +109,4 @@ body {
         /* Border Radius */
         --radius-radius: var(--radius-xl);
     }
-
 }
-
-
-
-
