@@ -49,4 +49,9 @@ class Schedule extends Model
     {
         return $this->hasMany(CopusObservation::class);
     }
+
+    public function users()
+    {
+        return $this->belongsToMany(User::class, 'schedule_user');
+    }
 }

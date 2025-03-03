@@ -1,6 +1,6 @@
 <div>
     @if ($currentStep === 0)
-        <span class="px-4 py-2 bg-gray-100 text-gray-600 rounded-lg">Already Submitted</span>
+        <span class="px-4 py-2 text-gray-600 rounded-lg">Already Submitted</span>
     @elseif($currentStep === 1)
         <x-filament::button wire:click="$set('currentStep', 1)">
             Start Evaluation

@@ -14,7 +14,7 @@ class Evaluation extends Page
 
     protected static ?string $navigationGroup = 'Evaluation';
 
-    protected static ?string $navigationLabel = 'Copus Sheet Result';
+    protected static ?string $navigationLabel = 'Copus Sheet';
 
     protected static ?int $navigationSort = 1;
 }

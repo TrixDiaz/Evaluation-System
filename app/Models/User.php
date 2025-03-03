@@ -67,6 +67,11 @@ class User extends Authenticatable implements FilamentUser
         return $this->hasMany(Schedule::class, 'professor_id');
     }
 
+    public function ScheduleUser()
+    {
+        return $this->belongsToMany(Schedule::class);
+    }
+
     public function parents(): BelongsToMany
     {
         return $this->belongsToMany(User::class, 'user_user', 'child_id', 'parent_id');
@@ -76,5 +81,4 @@ class User extends Authenticatable implements FilamentUser
     {
         return $this->belongsToMany(User::class, 'user_user', 'parent_id', 'child_id');
     }
-
 }

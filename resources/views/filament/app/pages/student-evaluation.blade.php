@@ -1,7 +1,7 @@
 <x-filament-panels::page>
     <div class="space-y-4">
         @foreach ($evaluations as $evaluation)
-            <div class="bg-white p-4 rounded-lg shadow">
+            <div class="p-4 rounded-lg shadow">
                 <div class="flex justify-between items-center">
                     <div>
                         <h3 class="text-lg font-semibold">{{ $evaluation->title }}</h3>

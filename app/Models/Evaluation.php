@@ -15,6 +15,7 @@ class Evaluation extends Model
         'observation_date',
         'additional_comments',
         'student_activities',
+        'evaluation_type',
         'instructor_activities',
     ];
 

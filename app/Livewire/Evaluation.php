@@ -133,22 +133,25 @@ class Evaluation extends Component implements HasForms, HasTable
             ], layout: \Filament\Tables\Enums\FiltersLayout::AboveContent)
             ->actions([
                 \Filament\Tables\Actions\Action::make('copus1')
-                    ->label('Copus')
+                    ->label('COPUS 1')
                     ->button()
                     ->color(fn($record) => \App\Models\Evaluation::where('schedule_id', $record->id)
                         ->where('dean_id', auth()->user()->id)
-                        ->exists() ? 'gray' : 'primary') // Gray when disabled, primary otherwise
+                        ->where('evaluation_type', 'copus1')
+                        ->exists() ? 'gray' : 'primary')
                     ->disabled(function ($record) {
                         return \App\Models\Evaluation::where('schedule_id', $record->id)
                             ->where('dean_id', auth()->user()->id)
+                            ->where('evaluation_type', 'copus1')
                             ->exists();
                     })
                     ->tooltip(function ($record) {
                         $evaluated = \App\Models\Evaluation::where('schedule_id', $record->id)
                             ->where('dean_id', auth()->user()->id)
+                            ->where('evaluation_type', 'copus1')
                             ->exists();
 
-                        return $evaluated ? 'This schedule has already been evaluated' : 'Create COPUS evaluation';
+                        return $evaluated ? 'COPUS 1 has already been evaluated' : 'Create COPUS 1 evaluation';
                     })
                     ->form(fn($record) => \App\Services\Evaluation::schema($record))
                     ->modalWidth('7xl')
@@ -156,23 +159,118 @@ class Evaluation extends Component implements HasForms, HasTable
                         $success = \App\Models\Evaluation::create([
                             'dean_id' => auth()->user()->id,
                             'schedule_id' => $record->id,
+                            'evaluation_type' => 'copus1',
                             'observation_date' => now(),
                             'student_activities' => $data['student_activities'] ?? [],
                             'instructor_activities' => $data['instructor_activities'] ?? [],
                             'additional_comments' => $data['additional_comments'],
                         ]);
 
-                        // Send notification to the professor using Filament
                         Notification::make()
-                            ->title('New COPUS Evaluation Submitted')
+                            ->title('New COPUS 1 Evaluation Submitted')
                             ->icon('heroicon-o-document-text')
-                            ->body("A new evaluation has been submitted for your {$record->course->name} course.")
+                            ->body("A new COPUS 1 evaluation has been submitted for your {$record->course->name} course.")
                             ->sendToDatabase($record->professor);
 
-                        // Show success notification to the dean
                         Notification::make()
                             ->success()
-                            ->title('Evaluation Submitted')
+                            ->title('COPUS 1 Evaluation Submitted')
+                            ->body("The evaluation has been submitted successfully and {$record->professor->name} has been notified.")
+                            ->persistent()
+                            ->send();
+                    }),
+
+                \Filament\Tables\Actions\Action::make('copus2')
+                    ->label('COPUS 2')
+                    ->button()
+                    ->color(fn($record) => \App\Models\Evaluation::where('schedule_id', $record->id)
+                        ->where('dean_id', auth()->user()->id)
+                        ->where('evaluation_type', 'copus2')
+                        ->exists() ? 'gray' : 'warning')
+                    ->disabled(function ($record) {
+                        return \App\Models\Evaluation::where('schedule_id', $record->id)
+                            ->where('dean_id', auth()->user()->id)
+                            ->where('evaluation_type', 'copus2')
+                            ->exists();
+                    })
+                    ->tooltip(function ($record) {
+                        $evaluated = \App\Models\Evaluation::where('schedule_id', $record->id)
+                            ->where('dean_id', auth()->user()->id)
+                            ->where('evaluation_type', 'copus2')
+                            ->exists();
+
+                        return $evaluated ? 'COPUS 2 has already been evaluated' : 'Create COPUS 2 evaluation';
+                    })
+                    ->form(fn($record) => \App\Services\Evaluation::schema($record))
+                    ->modalWidth('7xl')
+                    ->action(function (array $data, $record) {
+                        $success = \App\Models\Evaluation::create([
+                            'dean_id' => auth()->user()->id,
+                            'schedule_id' => $record->id,
+                            'evaluation_type' => 'copus2',
+                            'observation_date' => now(),
+                            'student_activities' => $data['student_activities'] ?? [],
+                            'instructor_activities' => $data['instructor_activities'] ?? [],
+                            'additional_comments' => $data['additional_comments'],
+                        ]);
+
+                        Notification::make()
+                            ->title('New COPUS 2 Evaluation Submitted')
+                            ->icon('heroicon-o-document-text')
+                            ->body("A new COPUS 2 evaluation has been submitted for your {$record->course->name} course.")
+                            ->sendToDatabase($record->professor);
+
+                        Notification::make()
+                            ->success()
+                            ->title('COPUS 2 Evaluation Submitted')
+                            ->body("The evaluation has been submitted successfully and {$record->professor->name} has been notified.")
+                            ->persistent()
+                            ->send();
+                    }),
+
+                \Filament\Tables\Actions\Action::make('copus3')
+                    ->label('COPUS 3')
+                    ->button()
+                    ->color(fn($record) => \App\Models\Evaluation::where('schedule_id', $record->id)
+                        ->where('dean_id', auth()->user()->id)
+                        ->where('evaluation_type', 'copus3')
+                        ->exists() ? 'gray' : 'success')
+                    ->disabled(function ($record) {
+                        return \App\Models\Evaluation::where('schedule_id', $record->id)
+                            ->where('dean_id', auth()->user()->id)
+                            ->where('evaluation_type', 'copus3')
+                            ->exists();
+                    })
+                    ->tooltip(function ($record) {
+                        $evaluated = \App\Models\Evaluation::where('schedule_id', $record->id)
+                            ->where('dean_id', auth()->user()->id)
+                            ->where('evaluation_type', 'copus3')
+                            ->exists();
+
+                        return $evaluated ? 'COPUS 3 has already been evaluated' : 'Create COPUS 3 evaluation';
+                    })
+                    ->form(fn($record) => \App\Services\Evaluation::schema($record))
+                    ->modalWidth('7xl')
+                    ->action(function (array $data, $record) {
+                        $success = \App\Models\Evaluation::create([
+                            'dean_id' => auth()->user()->id,
+                            'schedule_id' => $record->id,
+                            'evaluation_type' => 'copus3',
+                            'observation_date' => now(),
+                            'student_activities' => $data['student_activities'] ?? [],
+                            'instructor_activities' => $data['instructor_activities'] ?? [],
+                            'additional_comments' => $data['additional_comments'],
+                        ]);
+
+                        Notification::make()
+                            ->title('New COPUS 3 Evaluation Submitted')
+                            ->icon('heroicon-o-document-text')
+                            ->body("A new COPUS 3 evaluation has been submitted for your {$record->course->name} course.")
+                            ->sendToDatabase($record->professor);
+
+                        Notification::make()
+                            ->success()
+                            ->title('COPUS 3 Evaluation Submitted')
                             ->body("The evaluation has been submitted successfully and {$record->professor->name} has been notified.")
                             ->persistent()
                             ->send();

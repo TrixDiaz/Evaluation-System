@@ -19,6 +19,7 @@
     'app.filament.app.resources.user-resource.pages.create-user' => 'App\\Filament\\App\\Resources\\UserResource\\Pages\\CreateUser',
     'app.filament.app.resources.user-resource.pages.edit-user' => 'App\\Filament\\App\\Resources\\UserResource\\Pages\\EditUser',
     'app.filament.app.resources.user-resource.pages.list-users' => 'App\\Filament\\App\\Resources\\UserResource\\Pages\\ListUsers',
+    'app.filament.app.pages.custom-profile' => 'App\\Filament\\App\\Pages\\CustomProfile',
     'app.filament.app.pages.dashboard' => 'App\\Filament\\App\\Pages\\Dashboard',
     'app.filament.app.pages.evaluation' => 'App\\Filament\\App\\Pages\\Evaluation',
     'app.filament.app.pages.student-eval-result' => 'App\\Filament\\App\\Pages\\StudentEvalResult',
@@ -51,6 +52,7 @@
   ),
   'pages' => 
   array (
+    'C:\\Users\\Trix\\Desktop\\authenticationOnly\\app\\Filament\\App\\Pages\\CustomProfile.php' => 'App\\Filament\\App\\Pages\\CustomProfile',
     'C:\\Users\\Trix\\Desktop\\authenticationOnly\\app\\Filament\\App\\Pages\\Dashboard.php' => 'App\\Filament\\App\\Pages\\Dashboard',
     'C:\\Users\\Trix\\Desktop\\authenticationOnly\\app\\Filament\\App\\Pages\\Evaluation.php' => 'App\\Filament\\App\\Pages\\Evaluation',
     'C:\\Users\\Trix\\Desktop\\authenticationOnly\\app\\Filament\\App\\Pages\\StudentEvalResult.php' => 'App\\Filament\\App\\Pages\\StudentEvalResult',
