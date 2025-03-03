@@ -85,10 +85,6 @@ class UserResource extends Resource implements HasShieldPermissions
                             ->offIcon('heroicon-m-user')
                             ->visibleOn('create')
                             ->dehydrateStateUsing(fn($state) => $state ? now() : null),
-                        Forms\Components\Select::make('permissions')
-                            ->multiple()
-                            ->relationship('permissions', 'name')
-                            ->preload(),
                         Forms\Components\TextInput::make('parent_id')
                             ->label('Parent Users')
                             ->default(fn() => auth()->id())
@@ -98,7 +94,7 @@ class UserResource extends Resource implements HasShieldPermissions
                             ->relationship(
                                 'children',
                                 'name',
-                                fn (Builder $query) => $query->whereHas('roles', fn ($q) => $q->where('name', 'professor'))
+                                fn(Builder $query) => $query->whereHas('roles', fn($q) => $q->where('name', 'professor'))
                             )
                             ->multiple()
                             ->preload()

@@ -1,3 +1,3 @@
 <x-filament-panels::page>
-    <livewire:dashboard />
+    {{ $this->table }}
 </x-filament-panels::page>

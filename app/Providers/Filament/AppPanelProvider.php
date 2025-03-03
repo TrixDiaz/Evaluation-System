@@ -29,10 +29,11 @@ class AppPanelProvider extends PanelProvider
             ->login()
             ->registration()
             ->passwordReset()
+            ->profile()
             ->databaseNotifications()
             ->databaseNotificationsPolling('30s')
             ->sidebarCollapsibleOnDesktop()
-//            ->topNavigation()
+            //            ->topNavigation()
             ->colors([
                 'primary' => Color::Emerald,
                 'secondary' => Color::Sky,
@@ -42,11 +43,16 @@ class AppPanelProvider extends PanelProvider
                 'Resource Group',
                 'System Settings'
             ])
+            ->navigationItems([
+                NavigationItem::make('Profile')
+                    ->url('profile')
+                    ->icon('heroicon-o-user-circle')
+                    ->sort(1),
+            ])
             ->discoverResources(in: app_path('Filament/App/Resources'), for: 'App\\Filament\\App\\Resources')
             ->discoverPages(in: app_path('Filament/App/Pages'), for: 'App\\Filament\\App\\Pages')
             ->discoverWidgets(in: app_path('Filament/App/Widgets'), for: 'App\\Filament\\App\\Widgets')
-            ->pages([
-            ])
+            ->pages([])
             ->widgets([])
             ->middleware([
                 EncryptCookies::class,

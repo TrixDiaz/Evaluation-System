@@ -5,6 +5,7 @@ namespace App\Filament\App\Resources;
 use App\Filament\App\Resources\StudentEvaluationResource\Pages;
 use App\Filament\App\Resources\StudentEvaluationResource\RelationManagers;
 use App\Models\StudentEvaluation;
+use BezhanSalleh\FilamentShield\Contracts\HasShieldPermissions;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -13,12 +14,29 @@ use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
-class StudentEvaluationResource extends Resource
+class StudentEvaluationResource extends Resource implements HasShieldPermissions
 {
+
+    public static function getPermissionPrefixes(): array
+    {
+        return [
+            'view',
+            'view_any',
+            'create',
+            'update',
+            'delete',
+            'delete_any',
+        ];
+    }
     protected static ?string $model = StudentEvaluation::class;
 
     protected static ?string $navigationGroup = 'Evaluation';
+
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+
+    protected static ?String $label = 'Create Student Evaluations';
+
+    protected static ?int $navigationSort = 2;
 
     public static function form(Form $form): Form
     {

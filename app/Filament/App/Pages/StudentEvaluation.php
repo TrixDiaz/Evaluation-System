@@ -9,9 +9,13 @@ use Filament\Pages\Page;
 class StudentEvaluation extends Page
 {
     protected static ?string $navigationIcon = 'heroicon-o-document-text';
+
     protected static string $view = 'filament.app.pages.student-evaluation';
+
     protected static ?string $navigationGroup = 'Evaluation';
-    protected static ?string $title = 'Available Evaluations';
+
+    protected static ?string $title = 'Student Evaluations';
+    protected static ?int $navigationSort = 3;
 
     public $evaluations;
 

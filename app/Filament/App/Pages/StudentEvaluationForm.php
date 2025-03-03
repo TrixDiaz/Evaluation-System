@@ -10,9 +10,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class StudentEvaluationForm extends Page
 {
-    protected static ?string $navigationIcon = 'heroicon-o-clipboard-document-list';
+    protected static ?string $navigationIcon = 'heroicon-o-bookmark-square';
+
     protected static string $view = 'filament.app.pages.student-evaluation-form';
+
     protected static ?string $navigationGroup = 'Evaluation';
+
     protected static bool $shouldRegisterNavigation = false;
 
     public ?StudentEvaluationModel $evaluation = null;
@@ -83,7 +86,7 @@ class StudentEvaluationForm extends Page
         foreach ($this->answers as $questionId => $answer) {
             StudentEvaluationResponse::create([
                 'student_evaluation_id' => $this->evaluation->id,
-                'student_evaluation_question_id' => $questionId,
+                'student_eval_id' => $questionId,
                 'user_id' => auth()->id(),
                 'schedule_id' => $this->schedule,
                 'year' => $this->year,

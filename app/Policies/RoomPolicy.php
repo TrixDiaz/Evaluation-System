@@ -63,7 +63,7 @@ class RoomPolicy
      */
     public function forceDelete(User $user, Room $room): bool
     {
-        return $user->can('force_delete_room');
+        return $user->can('{{ ForceDelete }}');
     }
 
     /**
@@ -71,7 +71,7 @@ class RoomPolicy
      */
     public function forceDeleteAny(User $user): bool
     {
-        return $user->can('force_delete_any_room');
+        return $user->can('{{ ForceDeleteAny }}');
     }
 
     /**
@@ -79,7 +79,7 @@ class RoomPolicy
      */
     public function restore(User $user, Room $room): bool
     {
-        return $user->can('restore_room');
+        return $user->can('{{ Restore }}');
     }
 
     /**
@@ -87,7 +87,7 @@ class RoomPolicy
      */
     public function restoreAny(User $user): bool
     {
-        return $user->can('restore_any_room');
+        return $user->can('{{ RestoreAny }}');
     }
 
     /**
@@ -95,7 +95,7 @@ class RoomPolicy
      */
     public function replicate(User $user, Room $room): bool
     {
-        return $user->can('replicate_room');
+        return $user->can('{{ Replicate }}');
     }
 
     /**
@@ -103,6 +103,6 @@ class RoomPolicy
      */
     public function reorder(User $user): bool
     {
-        return $user->can('reorder_room');
+        return $user->can('{{ Reorder }}');
     }
 }

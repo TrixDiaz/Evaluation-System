@@ -17,7 +17,12 @@ class Schedule extends Model
         'name',
         'time',
         'semester',
-        'is_active'
+        'is_active',
+        'course_id',
+        'professor_id',
+        'subject_id',
+        'room_id',
+        'year',
     ];
 
     public function subject(): BelongsTo
