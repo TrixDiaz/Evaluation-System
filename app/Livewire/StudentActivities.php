@@ -3,38 +3,32 @@
 namespace App\Livewire;
 
 use Leandrocfe\FilamentApexCharts\Widgets\ApexChartWidget;
+use App\Models\Evaluation;
 
 class StudentActivities extends ApexChartWidget
 {
-    /**
-     * Chart Id
-     *
-     * @var string
-     */
     protected static ?string $chartId = 'studentActivities';
-
-    /**
-     * Widget Title
-     *
-     * @var string|null
-     */
     protected static ?string $heading = 'Student Activities';
 
-    /**
-     * Chart options (series, labels, types, size, animations...)
-     * https://apexcharts.com/docs/options
-     *
-     * @return array
-     */
     protected function getOptions(): array
     {
+        $activities = Evaluation::first()->student_activities ?? [];
+
+        // Count frequency of each activity
+        $activityCounts = [];
+        foreach ($activities as $timeSlot => $activityList) {
+            foreach ($activityList as $activity) {
+                $activityCounts[$activity] = ($activityCounts[$activity] ?? 0) + 1;
+            }
+        }
+
         return [
             'chart' => [
                 'type' => 'pie',
-                'height' => 300,
+                'height' => 400,
             ],
-            'series' => [2, 4, 6, 10, 14],
-            'labels' => ['Jan', 'Feb', 'Mar', 'Apr', 'May'],
+            'series' => array_values($activityCounts),
+            'labels' => array_keys($activityCounts),
             'legend' => [
                 'labels' => [
                     'fontFamily' => 'inherit',

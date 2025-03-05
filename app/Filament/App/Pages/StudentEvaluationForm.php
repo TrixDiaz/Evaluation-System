@@ -86,7 +86,7 @@ class StudentEvaluationForm extends Page
         foreach ($this->answers as $questionId => $answer) {
             StudentEvaluationResponse::create([
                 'student_evaluation_id' => $this->evaluation->id,
-                'student_eval_id' => $questionId,
+                'student_eval_question_id' => $questionId, // Add this line
                 'user_id' => auth()->id(),
                 'schedule_id' => $this->schedule,
                 'year' => $this->year,

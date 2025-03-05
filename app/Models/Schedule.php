@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Schedule extends Model
@@ -53,5 +54,15 @@ class Schedule extends Model
     public function users()
     {
         return $this->belongsToMany(User::class, 'schedule_user');
+    }
+
+    public function studentEvaluations(): BelongsToMany
+    {
+        return $this->belongsToMany(StudentEvaluation::class);
+    }
+
+    public function evaluations()
+    {
+        return $this->belongsToMany(StudentEvaluation::class, 'student_evaluation_schedules');
     }
 }

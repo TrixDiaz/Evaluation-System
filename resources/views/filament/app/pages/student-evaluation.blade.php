@@ -1,6 +1,25 @@
 <x-filament-panels::page>
-    {{-- Student Evaluation Starting Line --}}
+
     <x-filament::section>
+        {{-- Statistics Section --}}
+        <div class="mb-6 grid grid-cols-3 gap-4">
+            <div class="p-4 border border-gray-600 rounded-lg shadow">
+                <h4 class="text-sm font-medium">Total Evaluations</h4>
+                <p class="text-2xl font-bold">{{ $totalEvaluations }}</p>
+            </div>
+            <div class="p-4 border border-gray-600 rounded-lg shadow">
+                <h4 class="text-sm font-medium">Completed</h4>
+                <p class="text-2xl font-bold text-green-600">{{ $completedEvaluations }}</p>
+            </div>
+            <div class="p-4 border border-gray-600 rounded-lg shadow">
+                <h4 class="text-sm font-medium">Completion Rate</h4>
+                <p class="text-2xl font-bold text-blue-600">{{ $completionPercentage }}%</p>
+            </div>
+        </div>
+    </x-filament::section>
+
+    <x-filament::section>
+        {{-- Student Evaluation Starting Line --}}
         <div class="space-y-4">
             @foreach ($evaluations as $evaluation)
                 <div class="p-4 rounded-lg shadow">

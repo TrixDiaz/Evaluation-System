@@ -44,6 +44,17 @@ class StudentEvaluationResource extends Resource implements HasShieldPermissions
             ->schema([
                 Forms\Components\Section::make()
                     ->schema([
+                        Forms\Components\Select::make('schedule_id')
+                            ->label('Schedule')
+                            ->relationship('schedule', 'name')
+                            ->multiple()
+                            ->searchable()
+                            ->preload()
+                            ->native(false)
+                            ->required(),
+                    ]),
+                Forms\Components\Section::make()
+                    ->schema([
                         Forms\Components\TextInput::make('title')
                             ->required()
                             ->maxLength(255),

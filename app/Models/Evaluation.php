@@ -25,6 +25,16 @@ class Evaluation extends Model
         'instructor_activities' => 'array',
     ];
 
+    public function getStudentActivitiesAttribute($value)
+    {
+        return json_decode($value) ?? [];
+    }
+
+    public function getInstructorActivitiesAttribute($value)
+    {
+        return json_decode($value) ?? [];
+    }
+
     public function dean(): BelongsTo
     {
         return $this->belongsTo(User::class, 'dean_id');
