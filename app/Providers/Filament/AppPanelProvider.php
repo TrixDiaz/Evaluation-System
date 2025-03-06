@@ -48,7 +48,7 @@ class AppPanelProvider extends PanelProvider
                     ->url(fn(): string => CustomProfile::getUrl())
                     ->icon('heroicon-o-user-circle')
                     ->sort(1)
-                    ->visible(fn(): bool => auth()->check() && auth()->user()->role === ['super_admin', 'admin']),
+                    ->visible(fn(): bool => auth()->check() && auth()->user()->role !== ['super_admin', 'admin']),
             ])
             ->discoverResources(in: app_path('Filament/App/Resources'), for: 'App\\Filament\\App\\Resources')
             ->discoverPages(in: app_path('Filament/App/Pages'), for: 'App\\Filament\\App\\Pages')

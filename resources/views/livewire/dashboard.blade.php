@@ -39,7 +39,7 @@
 
                 <div class="flex flex-row items-center justify-center gap-4 p-6 rounded-xl shadow-lg">
                     <x-filament::button outlined icon="heroicon-m-user-circle" size="xl"
-                        href="{{ route('filament.app.auth.profile') }}" tag="a" target="_blank"
+                        href="{{ route('filament.app.pages.custom-profile') }}" tag="a" target="_blank"
                         class="w-64 h-16 text-lg justify-center custom-button">
                         Profile
                     </x-filament::button>

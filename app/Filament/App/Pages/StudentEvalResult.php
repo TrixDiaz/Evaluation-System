@@ -2,55 +2,35 @@
 
 namespace App\Filament\App\Pages;
 
+use App\Models\StudentEvaluationResponse;
 use BezhanSalleh\FilamentShield\Traits\HasPageShield;
 use Filament\Pages\Page;
-use Filament\Tables\Concerns\InteractsWithTable;
-use Filament\Tables\Contracts\HasTable;
-use Filament\Tables\Table;
+use Illuminate\Support\Facades\DB;
 
-class StudentEvalResult extends Page implements HasTable
+class StudentEvalResult extends Page
 {
-    use InteractsWithTable;
-
     use HasPageShield;
 
     protected static ?string $navigationIcon = 'heroicon-o-book-open';
-
     protected static string $view = 'filament.app.pages.student-eval-result';
-
     protected static ?string $navigationGroup = 'Evaluation';
-
-    protected static ?string $title = 'Student Evaluation Result';
-
+    protected static ?string $title = 'Evaluation Summary';
     protected static ?int $navigationSort = 4;
 
-    public function table(Table $table): table
+    public function getSummaryData()
     {
-        return $table
-            ->query(
-                \App\Models\StudentEvaluationResponse::query()
-            )
-            ->columns([
-                \Filament\Tables\Columns\TextColumn::make('courseprof')
-                    ->label('Course and Professor')
-                    ->default(fn($record): string => $record->course?->name)
-                    ->description(fn($record): string => $record->professor?->name),
-                \Filament\Tables\Columns\TextColumn::make('roomsubject')
-                    ->label('Room & Subject')
-                    ->default(fn($record): string => $record->room?->name)
-                    ->description(fn($record): string => $record->subject?->name),
-                \Filament\Tables\Columns\TextColumn::make('yearsem')
-                    ->label('Year & Semester')
-                    ->default(fn($record): string => $record->year)
-                    ->description(fn($record): string => $record->semester),
-                \Filament\Tables\Columns\TextColumn::make('evaluated')
-                    ->label('Evaluated')
-                    ->default(fn($record): string => $record->evaluated)
-                    ->description(fn($record): string => $record->evaluated),
-                \Filament\Tables\Columns\TextColumn::make('score')
-                    ->label('Score')
-                    ->default(fn($record): string => $record->score)
-                    ->description(fn($record): string => $record->score),
-            ]);
+        return StudentEvaluationResponse::query()
+            ->join('student_evaluations', 'student_evaluation_responses.student_evaluation_id', '=', 'student_evaluations.id')
+            ->select([
+                'student_evaluation_responses.year',
+                'student_evaluations.title as evaluation_title',
+                DB::raw('COUNT(DISTINCT student_evaluation_responses.user_id) as total_respondents'),
+                DB::raw('COUNT(*) as total_responses'),
+                DB::raw('AVG(CASE WHEN student_evaluation_responses.answer REGEXP \'^[0-9]+$\' 
+                    THEN CAST(student_evaluation_responses.answer AS DECIMAL) END) as average_rating')
+            ])
+            ->groupBy('student_evaluation_responses.year', 'student_evaluations.title')
+            ->orderBy('student_evaluation_responses.year', 'desc')
+            ->get();
     }
 }

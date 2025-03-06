@@ -25,7 +25,6 @@ class User extends Authenticatable implements FilamentUser
         return auth()->check() && str_ends_with(auth()->user()->email, '@phinmaed.com');
     }
 
-
     /**
      * The attributes that are mass assignable.
      *
