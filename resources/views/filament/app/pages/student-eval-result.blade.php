@@ -1,8 +1,8 @@
 <x-filament-panels::page>
-    <div class="space-y-4">
-        <div class="p-6 bg-white rounded-lg shadow">
-            <div class="overflow-x-auto">
-                <table class="min-w-full divide-y divide-gray-200">
+    <div class="space-y-4 w-full">
+        <div class="p-6 rounded-lg shadow w-full">
+            <div class="overflow-x-auto w-full">
+                <table class="w-full divide-y divide-gray-200">
                     <thead class="bg-gray-50">
                         <tr>
                             <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
@@ -15,7 +15,7 @@
                                 Average Rating</th>
                         </tr>
                     </thead>
-                    <tbody class="bg-white divide-y divide-gray-200">
+                    <tbody class="divide-y divide-gray-200">
                         @foreach ($this->getSummaryData() as $summary)
                             <tr>
                                 <td class="px-6 py-4 whitespace-nowrap" title="{{ $summary->evaluation_title }}">

@@ -33,4 +33,28 @@ class StudentEvalResult extends Page
             ->orderBy('student_evaluation_responses.year', 'desc')
             ->get();
     }
+
+    public function getActivityLegendCounts()
+    {
+        $responses = Evaluation::whereNotNull('student_activities')
+            ->pluck('student_activities');
+
+        $allActivities = [];
+        foreach ($responses as $response) {
+            $activities = json_decode($response, true);
+            if (!$activities) continue;
+
+            // Flatten all time slot arrays into a single array
+            foreach ($activities as $timeSlot => $acts) {
+                $allActivities = array_merge($allActivities, $acts);
+            }
+        }
+
+        // Count occurrences of each activity
+        $activityCounts = array_count_values($allActivities);
+        // Sort alphabetically by legend
+        ksort($activityCounts);
+
+        return $activityCounts;
+    }
 }
