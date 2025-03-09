@@ -38,23 +38,25 @@
                     <div class="space-y-4">
                         <div class="grid grid-cols-2 gap-4">
                             <div>
-                                <label class="block font-medium  mb-1">Schedule</label>
-                                <x-filament::input.wrapper>
-                                    <x-filament::input.select wire:model="schedule"
-                                        class="w-full rounded-lg border-gray-300">
-                                        <option value="">Select Schedule</option>
-                                        @foreach (\App\Models\Schedule::all() as $schedule)
-                                            <option value="{{ $schedule->id }}">
-                                                {{ $schedule->subject->name }} - {{ $schedule->day }}
-                                                {{ $schedule->time }}
-                                            </option>
-                                        @endforeach
-                                    </x-filament::input.select>
-                                </x-filament::input.wrapper>
+                                <label class="block font-medium mb-1">Schedule</label>
+                                <div class="p-2 border rounded-md bg-gray-50">
+                                    @if ($schedule)
+                                        @php
+                                            $selectedSchedule = \App\Models\Schedule::find($schedule);
+                                        @endphp
+                                        Schedule ID: {{ $selectedSchedule->id }} -
+                                        {{ $selectedSchedule->subject->name }} - {{ $selectedSchedule->day }}
+                                        {{ $selectedSchedule->time }}
+                                    @else
+                                        No schedule selected
+                                    @endif
+                                </div>
+                                <input type="hidden" wire:model="schedule">
                                 @error('schedule')
                                     <span style="color:red" class="text-red-500 text-sm">{{ $message }}</span>
                                 @enderror
                             </div>
+
                             <div>
                                 <label class="block font-medium  mb-1">Year</label>
                                 <x-filament::input.wrapper>

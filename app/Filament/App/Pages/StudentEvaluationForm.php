@@ -7,6 +7,7 @@ use App\Models\StudentEvaluationResponse;
 use Filament\Pages\Page;
 use Filament\Notifications\Notification;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class StudentEvaluationForm extends Page
 {
@@ -34,6 +35,41 @@ class StudentEvaluationForm extends Page
     {
         $evaluationId = request()->query('evaluation');
         $this->evaluation = StudentEvaluationModel::with('questions')->findOrFail($evaluationId);
+
+        // Get the schedule_id passed from the URL
+        $scheduleId = request()->query('schedule_id');
+
+        if ($scheduleId) {
+            // Verify if schedule belongs to user
+            $userHasSchedule = DB::table('schedule_user')
+                ->where('user_id', auth()->id())
+                ->where('schedule_id', $scheduleId)
+                ->exists();
+
+            if ($userHasSchedule) {
+                $this->schedule = $scheduleId;
+            } else {
+                Notification::make()
+                    ->title('Invalid Schedule')
+                    ->warning()
+                    ->send();
+                $this->redirect(StudentEvaluation::getUrl());
+            }
+        } else {
+            // Get schedule from student_evaluation_schedule table
+            $scheduleData = StudentEvaluationSchedule::where('student_evaluation_id', $evaluationId)
+                ->first();
+
+            if ($scheduleData) {
+                $this->schedule = $scheduleData->schedule_id;
+            } else {
+                Notification::make()
+                    ->title('No schedule found for this evaluation')
+                    ->warning()
+                    ->send();
+                $this->redirect(StudentEvaluation::getUrl());
+            }
+        }
 
         // Check if user has already submitted
         $hasSubmitted = StudentEvaluationResponse::where([

@@ -32,6 +32,10 @@
                             <x-filament::button disabled class="opacity-50 cursor-not-allowed">
                                 Already Submitted
                             </x-filament::button>
+                        @elseif (!$evaluation->is_active)
+                            <x-filament::button disabled class="opacity-50 cursor-not-allowed">
+                                Evaluation Closed
+                            </x-filament::button>
                         @else
                             <x-filament::button wire:click="startEvaluation({{ $evaluation->id }})">
                                 Start Evaluation

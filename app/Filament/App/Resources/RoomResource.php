@@ -25,7 +25,11 @@ class RoomResource extends Resource implements HasShieldPermissions
             'update',
             'delete',
             'delete_any',
-            'publish'
+            'publish',
+            'restore',
+            'restore_any',
+            'force_delete',
+            'force_delete_any',
         ];
     }
 

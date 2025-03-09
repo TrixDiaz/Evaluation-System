@@ -90,7 +90,7 @@ class UserResource extends Resource implements HasShieldPermissions
                             ->default(fn() => auth()->id())
                             ->hidden(fn() => auth()->user()->cannot('assign_parent_user')),
                         Forms\Components\Select::make('children')
-                            ->label('Sub Users')
+                            ->label('Sub Professors')
                             ->relationship(
                                 'children',
                                 'name',

@@ -1,6 +1,10 @@
 <div>
-    @if ($currentStep === 0)
+    @if ($evaluation->is_active == false || $evaluation->is_active == 0)
+        <span class="px-4 py-2 text-gray-600 rounded-lg">Evaluation is closed</span>
+    @elseif ($currentStep === 0)
         <span class="px-4 py-2 text-gray-600 rounded-lg">Already Submitted</span>
+    @elseif ($currentStep === 99)
+        <span class="px-4 py-2 text-gray-600 rounded-lg">Evaluation is closed</span>
     @elseif($currentStep === 1)
         <x-filament::button wire:click="$set('currentStep', 1)">
             Start Evaluation

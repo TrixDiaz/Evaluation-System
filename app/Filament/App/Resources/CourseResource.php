@@ -25,7 +25,11 @@ class CourseResource extends Resource implements HasShieldPermissions
             'update',
             'delete',
             'delete_any',
-            'publish'
+            'publish',
+            'restore',
+            'restore_any',
+            'force_delete',
+            'force_delete_any',
         ];
     }
     protected static ?string $model = Course::class;
@@ -203,7 +207,7 @@ class CourseResource extends Resource implements HasShieldPermissions
                         true => 'Active',
                         false => 'Inactive'
                     ])
-                    ->native(false)
+                    ->native(false),
             ])
             ->actions([
                 Tables\Actions\ActionGroup::make([

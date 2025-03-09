@@ -16,9 +16,21 @@ class StudentEvaluation extends Component
     public $schedule = '';
     public $year = '';
 
+
     public function mount(StudentEvaluationModel $evaluation)
     {
         $this->evaluation = $evaluation;
+
+        //Check if the evaluation is open or active
+        if ($evaluation->is_active == false || $evaluation->is_active === 0) {
+            Notification::make()
+                ->title('This evaluation is not active')
+                ->warning()
+                ->send();
+
+            $this->currentStep = 99;
+            return;
+        }
 
         // Check if user has already submitted this evaluation
         $hasSubmitted = StudentEvaluationResponse::where([

@@ -70,7 +70,7 @@
         }
     </style>
 
-    @if (auth()->user()->hasRole(['super_admin', 'admin ']))
+    @if (auth()->user()->hasRole(['super_admin', 'admin', 'dean']))
         <section>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <livewire:student-activities />
@@ -89,11 +89,14 @@
         <section class="space-y-4">
 
             @php
+
                 $needsScheduleUpdate =
                     !auth()
                         ->user()
-                        ->hasRole(['super_admin', 'admin', 'professor']) &&
-                    (auth()->user()->user_schedule === null || empty(auth()->user()->user_schedule));
+                        ->hasRole(['super_admin', 'admin', 'professor', 'dean']) &&
+                    !\Illuminate\Support\Facades\DB::table('schedule_user')
+                        ->where('user_id', auth()->id())
+                        ->exists();
             @endphp
 
             @if ($needsScheduleUpdate)

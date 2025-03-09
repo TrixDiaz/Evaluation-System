@@ -25,7 +25,11 @@ class ScheduleResource extends Resource implements HasShieldPermissions
             'update',
             'delete',
             'delete_any',
-            'publish'
+            'publish',
+            'restore',
+            'restore_any',
+            'force_delete',
+            'force_delete_any',
         ];
     }
     protected static ?string $model = Schedule::class;
@@ -45,29 +49,62 @@ class ScheduleResource extends Resource implements HasShieldPermissions
     {
         return $form
             ->schema([
-                Forms\Components\Select::make('course_id')
-                    ->relationship('course', 'name')
-                    ->required(),
-                Forms\Components\Select::make('professor_id')
-                    ->relationship('professor', 'name')
-                    ->required(),
-                Forms\Components\Select::make('subject_id')
-                    ->relationship('subject', 'name')
-                    ->required(),
-                Forms\Components\Select::make('room_id')
-                    ->relationship('room', 'name')
-                    ->required(),
-                Forms\Components\TextInput::make('name')
-                    ->required(),
-                Forms\Components\TextInput::make('time')
-                    ->required(),
-                Forms\Components\TextInput::make('semester')
-                    ->required(),
-                Forms\Components\TextInput::make('year')
-                    ->required()
-                    ->numeric(),
-                Forms\Components\Toggle::make('is_active')
-                    ->required(),
+                Forms\Components\Section::make()
+                    ->schema([
+
+                        Forms\Components\Select::make('course_id')
+                            ->relationship(
+                                'course',
+                                'name',
+                                fn(Builder $query) => $query->where('is_active', true)
+                            )
+                            ->native(false)
+                            ->searchable()
+                            ->preload()
+                            ->required(),
+                        Forms\Components\Select::make('professor_id')
+                            ->relationship(
+                                'professor',
+                                'name',
+                                fn(Builder $query) => $query->role('professor')
+                            )
+                            ->native(false)
+                            ->searchable()
+                            ->preload()
+                            ->required(),
+                        Forms\Components\Select::make('subject_id')
+                            ->relationship(
+                                'subject',
+                                'name',
+                                fn(Builder $query) => $query->where('is_active', true)
+                            )
+                            ->native(false)
+                            ->searchable()
+                            ->preload()
+                            ->required(),
+                        Forms\Components\Select::make('room_id')
+                            ->relationship(
+                                'room',
+                                'name',
+                                fn(Builder $query) => $query->where('is_active', true)
+                            )
+                            ->native(false)
+                            ->searchable()
+                            ->preload()
+                            ->required(),
+                        Forms\Components\TextInput::make('name')
+                            ->label('Title')
+                            ->required(),
+                        Forms\Components\TextInput::make('time')
+                            ->required(),
+                        Forms\Components\TextInput::make('semester')
+                            ->required(),
+                        Forms\Components\TextInput::make('year')
+                            ->required()
+                            ->numeric(),
+                        Forms\Components\Toggle::make('is_active')
+                            ->required(),
+                    ])->columns(2)
             ]);
     }
 
@@ -77,14 +114,14 @@ class ScheduleResource extends Resource implements HasShieldPermissions
             ->columns([
                 Tables\Columns\TextColumn::make('course.name')
                     ->sortable()
-                    ->description(fn ($record): string => $record->room?->name),
+                    ->description(fn($record): string => $record->room?->name),
                 Tables\Columns\TextColumn::make('professor.name')
                     ->sortable()
-                    ->description(fn ($record): string => $record->subject?->name),
+                    ->description(fn($record): string => $record->subject?->name),
                 Tables\Columns\TextColumn::make('name')
-                    ->description(fn ($record): string => $record->semester),
+                    ->description(fn($record): string => $record->semester),
                 Tables\Columns\TextColumn::make('time')
-                    ->description(fn ($record): string => 'Year ' . $record->year),
+                    ->description(fn($record): string => 'Year ' . $record->year),
                 Tables\Columns\IconColumn::make('is_active')
                     ->boolean(),
                 Tables\Columns\TextColumn::make('deleted_at')

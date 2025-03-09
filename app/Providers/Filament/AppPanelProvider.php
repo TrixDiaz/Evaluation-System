@@ -17,7 +17,7 @@ use Illuminate\Session\Middleware\AuthenticateSession;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
 use Filament\Navigation\NavigationItem;
-
+use Filament\Pages\Auth\Register;
 
 class AppPanelProvider extends PanelProvider
 {
@@ -28,12 +28,11 @@ class AppPanelProvider extends PanelProvider
             ->id('app')
             ->path('app')
             ->login()
-            ->registration()
+            ->registration(Register::class)
             ->passwordReset()
             ->databaseNotifications()
             ->databaseNotificationsPolling('30s')
             ->sidebarCollapsibleOnDesktop()
-            //            ->topNavigation()
             ->colors([
                 'primary' => Color::Emerald,
                 'secondary' => Color::Sky,

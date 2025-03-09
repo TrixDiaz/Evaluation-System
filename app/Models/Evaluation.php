@@ -17,6 +17,9 @@ class Evaluation extends Model
         'student_activities',
         'evaluation_type',
         'instructor_activities',
+        'deleted_at',
+        'created_at',
+        'updated_at'
     ];
 
     protected $casts = [

@@ -96,6 +96,10 @@ class StudentEvaluationResource extends Resource implements HasShieldPermissions
             ->columns([
                 Tables\Columns\TextColumn::make('title')
                     ->searchable(),
+                Tables\Columns\ToggleColumn::make('is_active')
+                    ->label('Publish')
+                    ->onIcon('heroicon-m-bolt')
+                    ->offIcon('heroicon-m-bolt-slash'),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()

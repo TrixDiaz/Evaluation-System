@@ -63,7 +63,7 @@ class CoursePolicy
      */
     public function forceDelete(User $user, Course $course): bool
     {
-        return $user->can('{{ ForceDelete }}');
+        return $user->can('force_delete_course');
     }
 
     /**
@@ -71,7 +71,7 @@ class CoursePolicy
      */
     public function forceDeleteAny(User $user): bool
     {
-        return $user->can('{{ ForceDeleteAny }}');
+        return $user->can('force_delete_any_course');
     }
 
     /**
@@ -79,7 +79,7 @@ class CoursePolicy
      */
     public function restore(User $user, Course $course): bool
     {
-        return $user->can('{{ Restore }}');
+        return $user->can('restore_course');
     }
 
     /**
@@ -87,7 +87,7 @@ class CoursePolicy
      */
     public function restoreAny(User $user): bool
     {
-        return $user->can('{{ RestoreAny }}');
+        return $user->can('restore_any_course');
     }
 
     /**
