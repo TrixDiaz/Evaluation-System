@@ -39,7 +39,7 @@
                         <div class="grid grid-cols-2 gap-4">
                             <div>
                                 <label class="block font-medium mb-1">Schedule</label>
-                                <div class="p-2 border rounded-md bg-gray-50">
+                                <div class="p-2 border rounded-md">
                                     @if ($schedule)
                                         @php
                                             $selectedSchedule = \App\Models\Schedule::find($schedule);

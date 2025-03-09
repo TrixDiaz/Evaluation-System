@@ -20,11 +20,15 @@ class Evaluation extends Component implements HasForms, HasTable
     public function table(Table $table): Table
     {
         $filters = $this->getTableFilterState('table');
+        $authUser = auth()->user();
 
         return $table
             ->heading('Evaluation Form')
             ->query(
                 Schedule::query()
+                    ->whereHas('professor', function ($query) use ($authUser) {
+                        $query->whereIn('id', $authUser->children->pluck('id'));
+                    })
                     ->when(
                         $filters['course_id'] ?? null,
                         fn(Builder $query, $courseId): Builder => $query->whereHas(
@@ -79,14 +83,9 @@ class Evaluation extends Component implements HasForms, HasTable
                     ->options(function () use ($filters) {
                         $authUser = \Illuminate\Support\Facades\Auth::user();
 
-                        // Get only the professors assigned to the dean
-                        $professorIds = \App\Models\DeanProfessorList::where('parent_id', $authUser->id)
-                            ->pluck('child_id')
-                            ->toArray();
-
-                        $query = User::role('professor')->whereIn('id', $professorIds);
-
-
+                        // Get professors through children relationship
+                        $query = User::role('professor')
+                            ->whereIn('id', $authUser->children->pluck('id'));
 
                         if (isset($filters['course_id'])) {
                             $query->whereHas('schedules', function ($q) use ($filters) {

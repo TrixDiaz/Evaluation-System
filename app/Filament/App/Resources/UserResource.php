@@ -78,6 +78,7 @@ class UserResource extends Resource implements HasShieldPermissions
                             ->relationship('roles', 'name')
                             ->multiple()
                             ->preload()
+
                             ->searchable(),
                         Forms\Components\Toggle::make('email_verified_at')
                             ->label('Verified Email')
@@ -110,7 +111,8 @@ class UserResource extends Resource implements HasShieldPermissions
             ->columns([
                 Tables\Columns\TextColumn::make('name')
                     ->label('Full Name')
-                    ->searchable()
+                    ->searchable(['name'])
+                    ->description(fn($record): string => $record->roles->pluck('name')->implode(', ') ?: 'Student')
                     ->toggleable(isToggledHiddenByDefault: false),
                 Tables\Columns\TextColumn::make('email')
                     ->searchable()
