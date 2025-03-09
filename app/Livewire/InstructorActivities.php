@@ -8,7 +8,7 @@ use App\Models\Evaluation;
 class InstructorActivities extends ApexChartWidget
 {
     protected static ?string $chartId = 'instructorActivities';
-    protected static ?string $heading = 'Instructor Activities';
+    protected static ?string $heading = 'Overall Instructor Activities';
 
     protected function getOptions(): array
     {
