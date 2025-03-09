@@ -18,7 +18,6 @@ class SubjectFactory extends Factory
     {
         return [
             'name' => fake()->text(30),
-            'slug' => fake()->slug(),
             'is_active' => fake()->boolean()
         ];
     }

@@ -18,7 +18,6 @@ class CourseFactory extends Factory
     {
         return [
             'name' => fake()->text(30),
-            'slug' => fake()->slug(),
             'code' => fake()->randomLetter(),
             'is_active' => fake()->boolean()
         ];
