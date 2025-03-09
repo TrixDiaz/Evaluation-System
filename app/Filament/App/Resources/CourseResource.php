@@ -4,6 +4,8 @@ namespace App\Filament\App\Resources;
 
 use App\Filament\App\Resources\CourseResource\Pages;
 use App\Filament\App\Resources\CourseResource\RelationManagers;
+use App\Filament\Exports\CourseExporter;
+use App\Filament\Imports\CourseImporter;
 use App\Models\Course;
 use BezhanSalleh\FilamentShield\Contracts\HasShieldPermissions;
 use Filament\Forms;
@@ -13,6 +15,9 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Filament\Tables\Actions\ImportAction;
+use Filament\Tables\Actions\ExportAction;
+
 
 class CourseResource extends Resource implements HasShieldPermissions
 {
@@ -50,8 +55,8 @@ class CourseResource extends Resource implements HasShieldPermissions
         return $form
             ->schema([
                 Forms\Components\Section::make()->schema([
-                    Forms\Components\Grid::make(2)
-                        ->schema(\App\Services\DynamicForm::schema(\App\Models\Course::class))->columns(2),
+                    Forms\Components\Grid::make(1)
+                        ->schema(\App\Services\DynamicForm::schema(\App\Models\Course::class))->columns(1),
                     Forms\Components\TextInput::make('code')
                         ->required(),
                 ])->columnSpan(['lg' => fn(string $operation) => $operation === 'create' ? 3 : 2]),
@@ -178,9 +183,6 @@ class CourseResource extends Resource implements HasShieldPermissions
                 Tables\Columns\TextColumn::make('name')
                     ->searchable()
                     ->toggleable(isToggledHiddenByDefault: false),
-                Tables\Columns\TextColumn::make('slug')
-                    ->searchable()
-                    ->toggleable(isToggledHiddenByDefault: false),
                 Tables\Columns\TextColumn::make('code')
                     ->searchable()
                     ->toggleable(isToggledHiddenByDefault: false),
@@ -208,6 +210,14 @@ class CourseResource extends Resource implements HasShieldPermissions
                         false => 'Inactive'
                     ])
                     ->native(false),
+            ])
+            ->headerActions([
+                ImportAction::make()
+                    ->importer(CourseImporter::class)
+                    ->color('primary'),
+                ExportAction::make()
+                    ->exporter(CourseExporter::class)
+                    ->color('secondary'),
             ])
             ->actions([
                 Tables\Actions\ActionGroup::make([

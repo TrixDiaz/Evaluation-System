@@ -52,16 +52,16 @@
   ),
   'pages' => 
   array (
-    'C:\\Users\\Trix\\Desktop\\authenticationOnly\\app\\Filament\\App\\Pages\\CustomProfile.php' => 'App\\Filament\\App\\Pages\\CustomProfile',
-    'C:\\Users\\Trix\\Desktop\\authenticationOnly\\app\\Filament\\App\\Pages\\Dashboard.php' => 'App\\Filament\\App\\Pages\\Dashboard',
-    'C:\\Users\\Trix\\Desktop\\authenticationOnly\\app\\Filament\\App\\Pages\\Evaluation.php' => 'App\\Filament\\App\\Pages\\Evaluation',
-    'C:\\Users\\Trix\\Desktop\\authenticationOnly\\app\\Filament\\App\\Pages\\StudentEvalResult.php' => 'App\\Filament\\App\\Pages\\StudentEvalResult',
-    'C:\\Users\\Trix\\Desktop\\authenticationOnly\\app\\Filament\\App\\Pages\\StudentEvaluation.php' => 'App\\Filament\\App\\Pages\\StudentEvaluation',
-    'C:\\Users\\Trix\\Desktop\\authenticationOnly\\app\\Filament\\App\\Pages\\StudentEvaluationForm.php' => 'App\\Filament\\App\\Pages\\StudentEvaluationForm',
+    'C:\\Users\\PC\\Documents\\GitHub\\Evaluation-System\\app\\Filament\\App\\Pages\\CustomProfile.php' => 'App\\Filament\\App\\Pages\\CustomProfile',
+    'C:\\Users\\PC\\Documents\\GitHub\\Evaluation-System\\app\\Filament\\App\\Pages\\Dashboard.php' => 'App\\Filament\\App\\Pages\\Dashboard',
+    'C:\\Users\\PC\\Documents\\GitHub\\Evaluation-System\\app\\Filament\\App\\Pages\\Evaluation.php' => 'App\\Filament\\App\\Pages\\Evaluation',
+    'C:\\Users\\PC\\Documents\\GitHub\\Evaluation-System\\app\\Filament\\App\\Pages\\StudentEvalResult.php' => 'App\\Filament\\App\\Pages\\StudentEvalResult',
+    'C:\\Users\\PC\\Documents\\GitHub\\Evaluation-System\\app\\Filament\\App\\Pages\\StudentEvaluation.php' => 'App\\Filament\\App\\Pages\\StudentEvaluation',
+    'C:\\Users\\PC\\Documents\\GitHub\\Evaluation-System\\app\\Filament\\App\\Pages\\StudentEvaluationForm.php' => 'App\\Filament\\App\\Pages\\StudentEvaluationForm',
   ),
   'pageDirectories' => 
   array (
-    0 => 'C:\\Users\\Trix\\Desktop\\authenticationOnly\\app\\Filament/App/Pages',
+    0 => 'C:\\Users\\PC\\Documents\\GitHub\\Evaluation-System\\app\\Filament/App/Pages',
   ),
   'pageNamespaces' => 
   array (
@@ -69,17 +69,17 @@
   ),
   'resources' => 
   array (
-    'C:\\Users\\Trix\\Desktop\\authenticationOnly\\app\\Filament\\App\\Resources\\CourseResource.php' => 'App\\Filament\\App\\Resources\\CourseResource',
-    'C:\\Users\\Trix\\Desktop\\authenticationOnly\\app\\Filament\\App\\Resources\\RoomResource.php' => 'App\\Filament\\App\\Resources\\RoomResource',
-    'C:\\Users\\Trix\\Desktop\\authenticationOnly\\app\\Filament\\App\\Resources\\ScheduleResource.php' => 'App\\Filament\\App\\Resources\\ScheduleResource',
-    'C:\\Users\\Trix\\Desktop\\authenticationOnly\\app\\Filament\\App\\Resources\\StudentEvaluationResource.php' => 'App\\Filament\\App\\Resources\\StudentEvaluationResource',
-    'C:\\Users\\Trix\\Desktop\\authenticationOnly\\app\\Filament\\App\\Resources\\SubjectResource.php' => 'App\\Filament\\App\\Resources\\SubjectResource',
-    'C:\\Users\\Trix\\Desktop\\authenticationOnly\\app\\Filament\\App\\Resources\\UserResource.php' => 'App\\Filament\\App\\Resources\\UserResource',
+    'C:\\Users\\PC\\Documents\\GitHub\\Evaluation-System\\app\\Filament\\App\\Resources\\CourseResource.php' => 'App\\Filament\\App\\Resources\\CourseResource',
+    'C:\\Users\\PC\\Documents\\GitHub\\Evaluation-System\\app\\Filament\\App\\Resources\\RoomResource.php' => 'App\\Filament\\App\\Resources\\RoomResource',
+    'C:\\Users\\PC\\Documents\\GitHub\\Evaluation-System\\app\\Filament\\App\\Resources\\ScheduleResource.php' => 'App\\Filament\\App\\Resources\\ScheduleResource',
+    'C:\\Users\\PC\\Documents\\GitHub\\Evaluation-System\\app\\Filament\\App\\Resources\\StudentEvaluationResource.php' => 'App\\Filament\\App\\Resources\\StudentEvaluationResource',
+    'C:\\Users\\PC\\Documents\\GitHub\\Evaluation-System\\app\\Filament\\App\\Resources\\SubjectResource.php' => 'App\\Filament\\App\\Resources\\SubjectResource',
+    'C:\\Users\\PC\\Documents\\GitHub\\Evaluation-System\\app\\Filament\\App\\Resources\\UserResource.php' => 'App\\Filament\\App\\Resources\\UserResource',
     0 => 'BezhanSalleh\\FilamentShield\\Resources\\RoleResource',
   ),
   'resourceDirectories' => 
   array (
-    0 => 'C:\\Users\\Trix\\Desktop\\authenticationOnly\\app\\Filament/App/Resources',
+    0 => 'C:\\Users\\PC\\Documents\\GitHub\\Evaluation-System\\app\\Filament/App/Resources',
   ),
   'resourceNamespaces' => 
   array (
@@ -90,7 +90,7 @@
   ),
   'widgetDirectories' => 
   array (
-    0 => 'C:\\Users\\Trix\\Desktop\\authenticationOnly\\app\\Filament/App/Widgets',
+    0 => 'C:\\Users\\PC\\Documents\\GitHub\\Evaluation-System\\app\\Filament/App/Widgets',
   ),
   'widgetNamespaces' => 
   array (

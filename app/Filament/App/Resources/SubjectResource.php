@@ -4,6 +4,8 @@ namespace App\Filament\App\Resources;
 
 use App\Filament\App\Resources\SubjectResource\Pages;
 use App\Filament\App\Resources\SubjectResource\RelationManagers;
+use App\Filament\Exports\SubjectExporter;
+use App\Filament\Imports\SubjectImporter;
 use App\Models\Subject;
 use BezhanSalleh\FilamentShield\Contracts\HasShieldPermissions;
 use Filament\Forms;
@@ -13,6 +15,8 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
+use Filament\Tables\Actions\ImportAction;
+use Filament\Tables\Actions\ExportAction;
 
 class SubjectResource extends Resource implements HasShieldPermissions
 {
@@ -52,7 +56,7 @@ class SubjectResource extends Resource implements HasShieldPermissions
             ->schema([
                 Forms\Components\Section::make()->schema([
                     Forms\Components\Grid::make(2)
-                        ->schema(\App\Services\DynamicForm::schema(\App\Models\Subject::class))->columns(2),
+                        ->schema(\App\Services\DynamicForm::schema(\App\Models\Subject::class))->columns(1),
                 ])->columnSpan(['lg' => fn(string $operation) => $operation === 'create' ? 3 : 2]),
 
                 Forms\Components\Grid::make(1)->schema([
@@ -177,9 +181,6 @@ class SubjectResource extends Resource implements HasShieldPermissions
                 Tables\Columns\TextColumn::make('name')
                     ->searchable()
                     ->toggleable(isToggledHiddenByDefault: false),
-                Tables\Columns\TextColumn::make('slug')
-                    ->searchable()
-                    ->toggleable(isToggledHiddenByDefault: false),
                 Tables\Columns\ToggleColumn::make('is_active')
                     ->label('Publish')
                     ->onIcon('heroicon-m-bolt')
@@ -204,6 +205,14 @@ class SubjectResource extends Resource implements HasShieldPermissions
                         false => 'Inactive'
                     ])
                     ->native(false)
+            ])
+            ->headerActions([
+                ImportAction::make()
+                    ->importer(SubjectImporter::class)
+                    ->color('primary'),
+                ExportAction::make()
+                    ->exporter(SubjectExporter::class)
+                    ->color('secondary'),
             ])
             ->actions([
                 Tables\Actions\ActionGroup::make([
