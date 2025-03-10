@@ -95,13 +95,31 @@ class ScheduleResource extends Resource implements HasShieldPermissions
                         Forms\Components\TextInput::make('name')
                             ->label('Title')
                             ->required(),
-                        Forms\Components\TextInput::make('time')
+                        Forms\Components\TimePicker::make('time')
                             ->required(),
-                        Forms\Components\TextInput::make('semester')
-                            ->required(),
-                        Forms\Components\TextInput::make('year')
+                        Forms\Components\Select::make('semester')
                             ->required()
-                            ->numeric(),
+                            ->native(false)
+                            ->options([
+                                '1st Semester',
+                                '2nd Semester',
+                                'Summer'
+                            ]),
+                        Forms\Components\Select::make('year')
+                            ->required()
+                            ->options([
+                                '2020',
+                                '2021',
+                                '2022',
+                                '2023',
+                                '2024',
+                                '2025',
+                                '2026',
+                                '2027',
+                                '2028',
+                                '2029',
+                                '2030',
+                            ]),
                         Forms\Components\Toggle::make('is_active')
                             ->required(),
                     ])->columns(2)
