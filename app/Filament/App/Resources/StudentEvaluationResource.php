@@ -51,7 +51,7 @@ class StudentEvaluationResource extends Resource implements HasShieldPermissions
                             ->searchable()
                             ->preload()
                             ->native(false)
-                            ->required(),
+                            ->required()
                     ]),
                 Forms\Components\Section::make()
                     ->schema([

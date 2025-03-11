@@ -119,17 +119,24 @@ final class Evaluation
                                     }, array_keys(self::generateOptionsGrid(self::INSTRUCTOR_CODES)), self::generateOptionsGrid(self::INSTRUCTOR_CODES))
                                 ),
                         ]),
-                ]),
+                ])
+                ->collapsed()
+                ->collapsible(),
 
             Forms\Components\Section::make('Additional Information')
                 ->schema([
                     Forms\Components\Textarea::make('additional_comments')
                         ->label('Comments')
                         ->placeholder('Enter any additional comments, explanations of analogies, etc.')
-                        ->rows(3),
+                        ->rows(7)
+                        ->extraAttributes([
+                            'class' => 'font-mono',
+                            'style' => 'font-size: 4rem; line-height: 1.2;',
+                        ]),
                 ])
                 ->collapsed()
                 ->collapsible(),
+
         ];
     }
 }
