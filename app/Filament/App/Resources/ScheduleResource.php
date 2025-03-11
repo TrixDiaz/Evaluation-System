@@ -2,8 +2,10 @@
 
 namespace App\Filament\App\Resources;
 
-use App\Filament\App\Resources\ScheduleResource\Pages;
 use App\Filament\App\Resources\ScheduleResource\RelationManagers;
+use Illuminate\Database\Eloquent\SoftDeletingScope;
+use App\Filament\App\Resources\ScheduleResource\Pages;
+use App\Filament\Exports\ScheduleExporter;
 use App\Models\Schedule;
 use BezhanSalleh\FilamentShield\Contracts\HasShieldPermissions;
 use Filament\Forms;
@@ -12,7 +14,9 @@ use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
+use App\Filament\Imports\ScheduleImporter;
+use Filament\Tables\Actions\ImportAction;
+use Filament\Tables\Actions\ExportAction;
 
 class ScheduleResource extends Resource implements HasShieldPermissions
 {
@@ -157,6 +161,14 @@ class ScheduleResource extends Resource implements HasShieldPermissions
             ])
             ->filters([
                 //
+            ])
+            ->headerActions([
+                ImportAction::make()
+                    ->importer(ScheduleImporter::class)
+                    ->color('primary'),
+                ExportAction::make()
+                    ->exporter(ScheduleExporter::class)
+                    ->color('secondary'),
             ])
             ->actions([
                 Tables\Actions\ActionGroup::make([
