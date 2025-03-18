@@ -28,7 +28,6 @@ class ScheduleImporter extends Importer
                 ->label('Course')
                 ->relationship()
                 ->example('Computer Science 101'),
-
             ImportColumn::make('instructor')
                 ->label('Instructor')
                 ->relationship()

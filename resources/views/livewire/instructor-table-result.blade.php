@@ -2,7 +2,7 @@
 
     <x-filament::section>
         <!-- Filter controls -->
-        <div class="mb-4 flex flex-wrap gap-4">
+        <div class="mb-4 grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3">
             <!-- Professor filter -->
             <div>
                 <label for="professor-filter" class="block text-sm font-medium">Filter by Professor:</label>
@@ -19,7 +19,7 @@
 
             <!-- Year filter -->
             <div>
-                <label for="year-filter" class="block text-sm font-medium">Filter by Year:</label>
+                <label for="year-filter" class="block text-sm font-medium">Filter by School Year:</label>
                 <x-filament::input.wrapper>
                     <x-filament::input.select id="year-filter" wire:model="selectedYear" wire:change="$refresh"
                         class="mt-1 block w-full rounded-md">

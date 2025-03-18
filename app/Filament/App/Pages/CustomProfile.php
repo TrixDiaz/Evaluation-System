@@ -24,7 +24,7 @@ class CustomProfile extends Page implements HasForms
 
     protected static bool $shouldRegisterNavigation = false;
 
-    protected static ?string $title = 'Student Profile';
+    protected static ?string $title = 'Profile';
 
     public ?string $name = '';
     public ?string $email = '';

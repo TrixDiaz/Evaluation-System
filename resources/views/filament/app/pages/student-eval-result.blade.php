@@ -3,7 +3,7 @@
         <div class="p-6 rounded-lg shadow w-full">
             <div class="overflow-x-auto w-full">
                 <table class="w-full divide-y divide-gray-200">
-                    <thead class="bg-gray-50">
+                    <thead class="bg-gray-50  dark:bg-gray-800">
                         <tr>
                             <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                                 Title</th>

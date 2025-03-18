@@ -71,12 +71,12 @@ class Evaluation extends Component implements HasForms, HasTable
                     ->since(),
             ])
             ->filters([
-                \Filament\Tables\Filters\SelectFilter::make('course_id')
-                    ->label('Course')
-                    ->relationship('course', 'name')
-                    ->preload()
-                    ->native(false)
-                    ->columnSpanFull(),
+                // \Filament\Tables\Filters\SelectFilter::make('course_id')
+                //     ->label('Course')
+                //     ->relationship('course', 'name')
+                //     ->preload()
+                //     ->native(false)
+                //     ->columnSpanFull(),
 
                 \Filament\Tables\Filters\SelectFilter::make('professor_id')
                     ->label('Professor')
@@ -108,6 +108,7 @@ class Evaluation extends Component implements HasForms, HasTable
                     ->native(false),
 
                 \Filament\Tables\Filters\SelectFilter::make('year')
+                    ->label('School Year')
                     ->options(function () use ($filters) {
                         $query = Schedule::query();
 
@@ -124,7 +125,7 @@ class Evaluation extends Component implements HasForms, HasTable
                         }
 
                         return $query->distinct()
-                            ->orderBy('year', 'desc')
+                            ->orderBy('year', 'asc')
                             ->pluck('year', 'year')
                             ->toArray();
                     })
