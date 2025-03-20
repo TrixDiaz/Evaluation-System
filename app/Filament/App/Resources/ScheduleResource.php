@@ -136,14 +136,14 @@ class ScheduleResource extends Resource implements HasShieldPermissions
             ->columns([
                 Tables\Columns\TextColumn::make('course.name')
                     ->sortable()
-                    ->description(fn($record): string => $record->room?->name),
+                    ->description(fn($record): string => $record->room?->name ?? ''),
                 Tables\Columns\TextColumn::make('professor.name')
                     ->sortable()
-                    ->description(fn($record): string => $record->subject?->name),
+                    ->description(fn($record): string => $record->subject?->name ?? ''),
                 Tables\Columns\TextColumn::make('name')
-                    ->description(fn($record): string => $record->semester),
+                    ->description(fn($record): string => $record->semester ?? ''),
                 Tables\Columns\TextColumn::make('time')
-                    ->description(fn($record): string => 'Year ' . $record->year),
+                    ->description(fn($record): string => 'Year ' . ($record->year ?? '')),
                 Tables\Columns\IconColumn::make('is_active')
                     ->boolean(),
                 Tables\Columns\TextColumn::make('deleted_at')
