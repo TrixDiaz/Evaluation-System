@@ -11,6 +11,7 @@ use Filament\Tables\Concerns\InteractsWithTable;
 use Filament\Tables\Contracts\HasTable;
 use Filament\Tables\Table;
 use Livewire\Component;
+use Illuminate\Database\Eloquent\Builder;
 
 class Evaluation extends Component implements HasForms, HasTable
 {
@@ -55,16 +56,16 @@ class Evaluation extends Component implements HasForms, HasTable
             ->columns([
                 \Filament\Tables\Columns\TextColumn::make('courseprof')
                     ->label('Course and Professor')
-                    ->default(fn($record): string => $record->course?->name)
-                    ->description(fn($record): string => $record->professor?->name),
+                    ->default(fn($record): string => $record->course?->name ?? 'N/A')
+                    ->description(fn($record): string => $record->professor?->name ?? 'N/A'),
                 \Filament\Tables\Columns\TextColumn::make('roomsubject')
                     ->label('Room & Subject')
-                    ->default(fn($record): string => $record->room?->name)
-                    ->description(fn($record): string => $record->subject?->name),
+                    ->default(fn($record): string => $record->room?->name ?? 'N/A')
+                    ->description(fn($record): string => $record->subject?->name ?? 'N/A'),
                 \Filament\Tables\Columns\TextColumn::make('yearsem')
                     ->label('Year & Semester')
-                    ->default(fn($record): string => $record->semester)
-                    ->description(fn($record): string => $record->year),
+                    ->default(fn($record): string => $record->semester ?? 'N/A')
+                    ->description(fn($record): string => $record->year ?? 'N/A'),
                 \Filament\Tables\Columns\TextColumn::make('created_at')
                     ->date('Y-m-d'),
                 \Filament\Tables\Columns\TextColumn::make('updated_at')
