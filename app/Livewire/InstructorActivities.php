@@ -12,27 +12,14 @@ class InstructorActivities extends ApexChartWidget
 
     protected function getOptions(): array
     {
-        $evaluation = Evaluation::first();
+        $activities = Evaluation::first()->instructor_activities ?? [];
 
-        if (!$evaluation || empty($evaluation->instructor_activities)) {
-            return $this->getEmptyOptions();
-        }
-
-        // Count frequency of each activity across all time slots
+        // Count frequency of each activity
         $activityCounts = [];
-        foreach ($evaluation->instructor_activities as $timeSlot => $activities) {
-            if (is_array($activities)) {
-                foreach ($activities as $activity) {
-                    if (!isset($activityCounts[$activity])) {
-                        $activityCounts[$activity] = 0;
-                    }
-                    $activityCounts[$activity]++;
-                }
+        foreach ($activities as $timeSlot => $activityList) {
+            foreach ($activityList as $activity) {
+                $activityCounts[$activity] = ($activityCounts[$activity] ?? 0) + 1;
             }
-        }
-
-        if (empty($activityCounts)) {
-            return $this->getEmptyOptions();
         }
 
         return [
@@ -42,30 +29,6 @@ class InstructorActivities extends ApexChartWidget
             ],
             'series' => array_values($activityCounts),
             'labels' => array_keys($activityCounts),
-            'legend' => [
-                'labels' => [
-                    'fontFamily' => 'inherit',
-                ],
-            ],
-            'plotOptions' => [
-                'pie' => [
-                    'donut' => [
-                        'size' => '70%'
-                    ]
-                ]
-            ],
-        ];
-    }
-
-    private function getEmptyOptions(): array
-    {
-        return [
-            'chart' => [
-                'type' => 'donut',
-                'height' => 400,
-            ],
-            'series' => [0],
-            'labels' => ['No Data Available'],
             'legend' => [
                 'labels' => [
                     'fontFamily' => 'inherit',
