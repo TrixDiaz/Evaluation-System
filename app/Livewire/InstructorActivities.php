@@ -12,7 +12,8 @@ class InstructorActivities extends ApexChartWidget
 
     protected function getOptions(): array
     {
-        $activities = Evaluation::first()->instructor_activities ?? [];
+        $evaluation = Evaluation::first();
+        $activities = $evaluation?->instructor_activities ?? [];
 
         // Count frequency of each activity
         $activityCounts = [];
@@ -22,6 +23,24 @@ class InstructorActivities extends ApexChartWidget
             }
         }
 
+        // Provide default data if empty
+        if (empty($activityCounts)) {
+            return [
+                'chart' => [
+                    'type' => 'donut',
+                    'height' => 400,
+                ],
+                'series' => [0],
+                'labels' => ['No Data Available'],
+                'legend' => [
+                    'labels' => [
+                        'fontFamily' => 'inherit',
+                    ],
+                ],
+            ];
+        }
+
+        // Return actual data
         return [
             'chart' => [
                 'type' => 'donut',
