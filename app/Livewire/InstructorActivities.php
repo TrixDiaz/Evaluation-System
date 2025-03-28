@@ -12,19 +12,28 @@ class InstructorActivities extends ApexChartWidget
 
     protected function getOptions(): array
     {
-        $activities = Evaluation::first()->instructor_activities ?? [];
+        // Get all evaluations that have instructor_activities
+        $evaluations = Evaluation::whereNotNull('instructor_activities')->get();
 
-        // Count frequency of each activity
+        // Count frequency of each activity across all evaluations
         $activityCounts = [];
-        foreach ($activities as $timeSlot => $activityList) {
-            foreach ($activityList as $activity) {
-                $activityCounts[$activity] = ($activityCounts[$activity] ?? 0) + 1;
+        foreach ($evaluations as $evaluation) {
+            $activities = $evaluation->instructor_activities ?? [];
+
+            // Flatten and count activities from all time slots
+            foreach ($activities as $timeSlot => $activityList) {
+                foreach ($activityList as $activity) {
+                    $activityCounts[$activity] = ($activityCounts[$activity] ?? 0) + 1;
+                }
             }
         }
 
+        // Sort activities by count in descending order
+        arsort($activityCounts);
+
         return [
             'chart' => [
-                'type' => 'pie',
+                'type' => 'donut',
                 'height' => 400,
             ],
             'series' => array_values($activityCounts),
@@ -33,6 +42,13 @@ class InstructorActivities extends ApexChartWidget
                 'labels' => [
                     'fontFamily' => 'inherit',
                 ],
+                'position' => 'right',
+            ],
+            'tooltip' => [
+                'enabled' => true,
+                'y' => [
+                    'formatter' => 'function(value) { return value + " times" }'
+                ]
             ],
         ];
     }
