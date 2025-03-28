@@ -24,7 +24,7 @@ class InstructorActivities extends ApexChartWidget
 
         return [
             'chart' => [
-                'type' => 'donut',
+                'type' => 'pie',
                 'height' => 400,
             ],
             'series' => array_values($activityCounts),
