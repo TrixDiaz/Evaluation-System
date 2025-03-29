@@ -94,9 +94,13 @@ class StudentTableResult extends Component
             $query->where('id', $this->evaluationId);
         }
 
-        // Update filter to look for student_id instead of professor_id
+        // Update filter to look for schedule with related user
         if (!empty($this->selectedProfessor)) {
-            $query->where('student_id', $this->selectedProfessor);
+            $query->whereHas('schedule', function ($q) {
+                $q->whereHas('users', function ($subQ) {
+                    $subQ->where('users.id', $this->selectedProfessor);
+                });
+            });
         }
 
         // Apply year filter if selected
@@ -112,7 +116,6 @@ class StudentTableResult extends Component
         foreach ($evaluations as $evaluation) {
             $studentActivities = $evaluation->student_activities;
 
-            // Flatten the activities
             foreach ($studentActivities as $timeInterval => $activities) {
                 foreach ($activities as $activity) {
                     if (!isset($legendCounts[$activity])) {
@@ -123,9 +126,7 @@ class StudentTableResult extends Component
             }
         }
 
-        // Sort by legend name
         ksort($legendCounts);
-
         return $legendCounts;
     }
 }
