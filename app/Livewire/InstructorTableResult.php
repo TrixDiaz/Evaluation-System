@@ -52,15 +52,19 @@ class InstructorTableResult extends Component
             );
         }
 
-        // Get professors
-        $professors = User::whereHas('schedules')->distinct()->get(['id', 'name']);
+        // Get professors with 'professor' role
+        $professors = User::role('professor')
+            ->whereHas('schedules')
+            ->distinct()
+            ->get(['id', 'name']);
+
         // Get years
         $years = Schedule::distinct()->orderBy('year', 'desc')->pluck('year');
 
         return view('livewire.instructor-table-result', [
             'legendCounts' => $legendCounts,
             'legendDescriptions' => $this->showDescriptions ? $this->legendDescriptions : [],
-            'allLegends' => $this->legendDescriptions, // For dropdown
+            'allLegends' => $this->legendDescriptions,
             'professors' => $professors,
             'years' => $years
         ]);
