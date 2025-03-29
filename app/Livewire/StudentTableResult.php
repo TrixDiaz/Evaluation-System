@@ -6,13 +6,15 @@ use App\Models\Evaluation;
 use App\Models\Schedule;
 use App\Models\User;
 use Livewire\Component;
+use Filament\Facades\Filament;
+use BezhanSalleh\FilamentShield\Facades\FilamentShield;
 
 class StudentTableResult extends Component
 {
     public $evaluationId;
     public $showDescriptions = true;
     public $selectedLegend = ''; // New property for the filter
-    public $selectedProfessor = ''; // New property for professor filter
+    public $selectedProfessor = ''; // New property for student filter
     public $selectedYear = ''; // New property for year filter
 
     // Legend descriptions
@@ -42,7 +44,6 @@ class StudentTableResult extends Component
     {
         $legendCounts = $this->calculateLegendCounts();
 
-        // Apply filter if selected
         if (!empty($this->selectedLegend)) {
             $legendCounts = array_filter(
                 $legendCounts,
@@ -51,17 +52,16 @@ class StudentTableResult extends Component
             );
         }
 
-        // Get professors for the filter dropdown
-        $professors = User::whereHas('schedules')->distinct()->get(['id', 'name']);
+        // Get users who don't have any roles (students)
+        $students = User::whereDoesntHave('roles')->distinct()->get(['id', 'name']);
 
-        // Get years for the filter dropdown
         $years = Schedule::distinct()->orderBy('year', 'desc')->pluck('year');
 
         return view('livewire.student-table-result', [
             'legendCounts' => $legendCounts,
             'legendDescriptions' => $this->showDescriptions ? $this->legendDescriptions : [],
-            'allLegends' => $this->legendDescriptions, // Pass all legends for the dropdown
-            'professors' => $professors,
+            'allLegends' => $this->legendDescriptions,
+            'students' => $students,
             'years' => $years
         ]);
     }
@@ -72,10 +72,10 @@ class StudentTableResult extends Component
         $this->selectedLegend = $legend;
     }
 
-    // Method to update the selected professor
-    public function updateProfessorFilter($professorId)
+    // Rename method to reflect student filter
+    public function updateStudentFilter($studentId)
     {
-        $this->selectedProfessor = $professorId;
+        $this->selectedProfessor = $studentId; // Keep using same property for now
     }
 
     // Method to update the selected year
@@ -94,11 +94,9 @@ class StudentTableResult extends Component
             $query->where('id', $this->evaluationId);
         }
 
-        // Apply professor filter if selected
+        // Update filter to look for student_id instead of professor_id
         if (!empty($this->selectedProfessor)) {
-            $query->whereHas('schedule', function ($q) {
-                $q->where('professor_id', $this->selectedProfessor);
-            });
+            $query->where('student_id', $this->selectedProfessor);
         }
 
         // Apply year filter if selected

@@ -6,11 +6,12 @@
             <div>
                 <label for="professor-filter" class="block text-sm font-medium">Filter by Student:</label>
                 <x-filament::input.wrapper>
-                    <x-filament::input.select id="professor-filter" wire:model="selectedProfessor" wire:change="$refresh"
+                    <x-filament::input.select id="professor-filter" wire:model="selectedProfessor"
+                        wire:change="updateStudentFilter($event.target.value)"
                         class="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md">
-                        <option value="">All Professors</option>
-                        @foreach ($professors as $professor)
-                            <option value="{{ $professor->id }}">{{ $professor->name }}</option>
+                        <option value="">All Students</option>
+                        @foreach ($students as $student)
+                            <option value="{{ $student->id }}">{{ $student->name }}</option>
                         @endforeach
                     </x-filament::input.select>
                 </x-filament::input.wrapper>
